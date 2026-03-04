@@ -113,7 +113,6 @@ const PROJECTS = [
 type Project = (typeof PROJECTS)[number];
 
  
- 
 function CountUp({ to, suffix = "" }: { to: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true });
@@ -186,7 +185,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         mouseX.set(0.5);
         mouseY.set(0.5);
       }}
-      className="group relative isolate h-full min-h-[520px] flex flex-col"
+      className="group relative isolate h-full min-h-[560px] flex flex-col"
       aria-label={`${project.title} — ${project.tag}, ${project.year}`}
     >
       {/* Gold glow ring */}
@@ -342,14 +341,13 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             aria-hidden="true"
           >
             <div
-              className="leading-none text-[#C6A969] dark:text-[#D4AF37]"
-              style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.2rem" }}
+              className="leading-none text-[#C6A969] dark:text-[#D4AF37] font-serif"
+              style={{ fontSize: "1.2rem" }}
             >
               {project.stat.value}
             </div>
             <div
-              className="mt-0.5 text-[9px] uppercase tracking-[0.22em] text-[#1C1C1C]/35 dark:text-white/25"
-              style={{ fontFamily: "'DM Mono', monospace" }}
+              className="mt-0.5 text-[9px] uppercase tracking-[0.22em] text-[#1C1C1C]/35 dark:text-white/25 font-mono"
             >
               {project.stat.label}
             </div>
@@ -360,11 +358,10 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         <div className="flex-1 p-6 flex flex-col relative z-[3]">
           <div className="flex items-start justify-between gap-3 mb-2">
             <h3
-              className="leading-tight tracking-tight font-normal"
+              className="leading-tight tracking-tight font-normal font-serif text-[#1C1C1C]"
               style={{
-                fontFamily: "'Playfair Display', serif",
-                fontSize: "clamp(1.1rem, 1.7vw, 1.28rem)",
-                color: hovered ? "#C6A969" : "#1C1C1C",
+                fontSize: "clamp(1.2rem, 1.8vw, 1.45rem)",
+                color: hovered ? "#C6A969" : undefined,
                 transition: "color 0.30s ease",
               }}
             >
@@ -381,8 +378,8 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           </div>
 
           <p
-            className="leading-relaxed mb-5 flex-1 line-clamp-3 group-hover:line-clamp-none transition-all duration-300 text-[#1C1C1C]/55 dark:text-white/40"
-            style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem" }}
+            className="leading-relaxed mb-5 flex-1 line-clamp-3 group-hover:line-clamp-none transition-all duration-300 text-[#1C1C1C]/55 dark:text-white/40 font-sans"
+            style={{ fontSize: "0.8rem" }}
           >
             {project.description}
           </p>
@@ -542,15 +539,16 @@ export default function SelectedWork() {
       ? PROJECTS.filter((p) => p.tag === activeFilter)
       : PROJECTS;
 
-  const handleFilterChange = useCallback((filter: string) => {
-    setActiveFilter(filter);
+  const handleFilterChange = useCallback((filter: string | null) => {
+    setActiveFilter(filter || "All");
   }, []);
 
   return (
     <section
+    id="projects"
       ref={ref}
       aria-label="Selected work"
-      className="relative py-24 md:py-26 bg-[#F5EFE6] dark:bg-[#111111] overflow-hidden"
+      className="relative section-padding pt-0 overflow-hidden"
     >
       {/* Dot grid background */}
       <div
@@ -562,7 +560,7 @@ export default function SelectedWork() {
         }}
       />
 
-      <div className="relative max-w-[1400px] mx-auto px-6 md:px-10 lg:px-14 z-20">
+      <div className="relative container-constrained z-20">
         {/* Header */}
         <motion.header
           initial={{ opacity: 0, y: 32 }}
@@ -591,8 +589,7 @@ export default function SelectedWork() {
               style={{ background: "#D4AF37", opacity: 0.65 }}
             />
             <p
-              className="text-[10px] uppercase tracking-[0.32em] text-[#C6A969]/70 dark:text-[#D4AF37]/50"
-              style={{ fontFamily: "'DM Mono', monospace" }}
+              className="text-[10px] uppercase tracking-[0.32em] text-[#C6A969]/70 dark:text-[#D4AF37]/50 font-mono"
             >
               Precision Engineered
             </p>
@@ -601,16 +598,15 @@ export default function SelectedWork() {
           {/* Title & Stats */}
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
             <h2
-              className="font-normal leading-[1.06] tracking-tight text-[#1C1C1C] dark:text-[#F0EDE8]"
+              className="font-normal leading-[1.06] tracking-tight text-[#1C1C1C] dark:text-[#F0EDE8] font-serif"
               style={{
-                fontFamily: "'Playfair Display', serif",
-                fontSize: "clamp(38px, 5vw, 64px)",
+                fontSize: "clamp(42px, 6vw, 82px)",
               }}
             >
               Selected
               <br />
               <em
-                className="not-italic italic"
+                className="italic"
                 style={{
                   background:
                     "linear-gradient(90deg, #a89078 0%, #D4AF37 50%, #a89078 100%)",
@@ -638,9 +634,8 @@ export default function SelectedWork() {
                 <div key={label} className="text-center lg:text-right">
                   <dt className="sr-only">{label}</dt>
                   <dd
-                    className="font-normal leading-none text-[#1C1C1C] dark:text-[#F0EDE8]"
+                    className="font-normal leading-none text-[#1C1C1C] dark:text-[#F0EDE8] font-serif"
                     style={{
-                      fontFamily: "'Playfair Display', serif",
                       fontSize: "clamp(26px, 2.8vw, 40px)",
                       letterSpacing: "-0.02em",
                     }}
@@ -648,8 +643,7 @@ export default function SelectedWork() {
                     <CountUp to={n} suffix={suffix} />
                   </dd>
                   <div
-                    className="text-[10px] uppercase tracking-[0.22em] font-medium text-[#1C1C1C]/45 dark:text-white/35 mt-1"
-                    style={{ fontFamily: "'DM Mono', monospace" }}
+                    className="text-[10px] uppercase tracking-[0.22em] font-medium text-[#1C1C1C]/45 dark:text-white/35 mt-1 font-mono"
                     aria-hidden="true"
                   >
                     {label}
@@ -694,7 +688,7 @@ export default function SelectedWork() {
         {/* Projects Grid */}
         <motion.div
           layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-12"
           aria-live="polite"
           aria-atomic="false"
         >
@@ -722,8 +716,7 @@ export default function SelectedWork() {
           transition={{ delay: 0.72, type: "spring", stiffness: 60, damping: 16 }}
         >
           <p
-            className="text-[11px] tracking-[0.26em] uppercase text-[#1C1C1C]/26 dark:text-white/18"
-            style={{ fontFamily: "'DM Mono', monospace" }}
+            className="text-[11px] tracking-[0.26em] uppercase text-[#1C1C1C]/26 dark:text-white/18 font-mono"
           >
             {PROJECTS.length} selected works · 2023–2024
           </p>
@@ -734,9 +727,9 @@ export default function SelectedWork() {
               "rounded-[14px] px-8 h-[52px] text-[13px] font-semibold",
               "bg-[#1C1C1C] dark:bg-[#222] text-white dark:text-[#F3F3F3]",
               "shadow-[0_4px_15px_rgba(0,0,0,0.10)] overflow-hidden cursor-pointer",
-              "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C6A969] focus-visible:ring-offset-2"
+              "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C6A969] focus-visible:ring-offset-2 font-mono"
             )}
-            style={{ fontFamily: "'DM Mono', monospace", letterSpacing: "0.06em" }}
+            style={{ letterSpacing: "0.06em" }}
             whileHover={{
               scale: 1.04,
               y: -2,

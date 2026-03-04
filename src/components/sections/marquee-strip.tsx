@@ -2,11 +2,7 @@
 
 import { useRef, useState } from "react";
 import { motion, useAnimationControls } from "framer-motion";
-import { clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
-
-// Utility
-const cn = (...inputs) => twMerge(clsx(inputs));
+import { cn } from "@/lib/utils";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
  
@@ -87,9 +83,6 @@ const MarqueeItem = ({ label, highlight }: any) => {
             fontSize: highlight
               ? "clamp(1rem, 2.2vw, 1.45rem)"
               : "clamp(0.85rem, 1.8vw, 1.2rem)",
-            fontFamily: highlight
-              ? "'Cormorant Garamond', 'Playfair Display', Georgia, serif"
-              : "'DM Sans', 'Helvetica Neue', sans-serif",
             fontStyle: highlight ? "normal" : "italic",
             letterSpacing: highlight ? "0.06em" : "0.01em",
             backgroundImage: hovered
@@ -204,8 +197,6 @@ export default function MarqueeStrip() {
 
       {/* CSS custom property for vignette color per theme */}
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=DM+Sans:ital,wght@1,300;1,400&display=swap');
-
         :root { --vignette-color: #fafaf9; }
         .dark { --vignette-color: #0d0d0e; }
 

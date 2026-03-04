@@ -9,6 +9,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-inter);
   --font-serif: var(--font-playfair);
+  --font-mono: var(--font-dm-mono);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -45,6 +46,11 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+
+  --spacing-section-py-sm: var(--section-py-sm);
+  --spacing-section-py-md: var(--section-py-md);
+  --spacing-section-py-lg: var(--section-py-lg);
+  --size-container-max: var(--container-max-width);
 }
 
 :root {
@@ -80,6 +86,11 @@
   --sidebar-accent-foreground: #1C1C1C;
   --sidebar-border: #E8E2D9;
   --sidebar-ring: #C6A969;
+
+  --section-py-sm: 4rem;
+  --section-py-md: 6rem;
+  --section-py-lg: 8rem;
+  --container-max-width: 1400px;
 }
 
 .dark {
@@ -114,6 +125,11 @@
   --sidebar-accent-foreground: #F5F5F5;
   --sidebar-border: #2A2A2A;
   --sidebar-ring: #D4AF37;
+
+  --section-py-sm: 2rem;
+  --section-py-md: 6rem;
+  --section-py-lg: 8rem;
+  --container-max-width: 1400px;
 }
 
 @layer base {
@@ -122,5 +138,13 @@
   }
   body {
     @apply bg-background text-foreground transition-colors duration-500 ease-in-out;
+  }
+
+  .section-padding {
+    @apply py-[var(--section-py-sm)] md:py-[var(--section-py-md)] lg:py-[var(--section-py-lg)];
+  }
+
+  .container-constrained {
+    @apply mx-auto w-full max-w-[var(--container-max-width)] px-6 md:px-10 lg:px-14;
   }
 }

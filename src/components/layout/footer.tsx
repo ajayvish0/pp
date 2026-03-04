@@ -65,7 +65,7 @@ const socialIcons = [
   return (
     <footer
       ref={ref}
-      className="relative bg-ivory-light dark:bg-charcoal-dark pt-20 pb-16 md:pt-28 md:pb-20 overflow-hidden"
+      className="relative section-padding pt-0 lg:py-24  overflow-hidden"
       style={{
         backgroundImage:
           'url("data:image/svg+xml,%3Csvg ... subtle grain texture here ...")',
@@ -78,51 +78,13 @@ const socialIcons = [
       </div>
 
       <motion.div
-        className="container mx-auto px-6 lg:px-12 relative z-10"
+        className="container-constrained relative z-10"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: '-100px' }}
         variants={footerVariants}
       >
-        {/* 1. Large CTA Section */}
-        <div className="text-center mb-20 md:mb-28">
-          <motion.h2
-            variants={headingVariants}
-            className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif tracking-tight mb-10 ${goldGradient}`}
-            style={{ WebkitBackgroundClip: 'text' }}
-          >
-            Let’s build systems that scale.
-          </motion.h2>
 
-          <motion.div
-            className="flex flex-col sm:flex-row justify-center gap-6"
-            variants={childVariants}
-          >
-            <motion.button
-              whileHover={{ y: -4, scale: 1.03 }}
-              whileTap={{ y: 0, scale: 0.98 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 17 }}
-              className="group relative px-10 py-5 rounded-2xl bg-white/70 dark:bg-neutral-900/40 backdrop-blur-md border border-white/20 dark:border-neutral-700/30 shadow-lg overflow-hidden text-charcoal-dark dark:text-ivory-light font-medium text-lg"
-            >
-              <span className="relative z-10">Start a Conversation</span>
-              <span className="absolute inset-0 bg-gradient-to-r from-[#a89078]/20 to-[#d4af37]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <span
-                className="absolute inset-0 opacity-0 group-hover:opacity-70"
-                style={shimmer}
-              />
-            </motion.button>
-
-            <Link href="/resume" >
-              <motion.div
-                whileHover={{ y: -4, scale: 1.03 }}
-                whileTap={{ y: 0, scale: 0.98 }}
-                className="px-10 py-5 rounded-2xl bg-transparent border-2 border-[#d4af37]/60 text-[#d4af37] font-medium text-lg hover:bg-[#d4af37]/10 transition-colors duration-300 inline-block text-center"
-              >
-                View Resume
-              </motion.div>
-            </Link>
-          </motion.div>
-        </div>
 
         {/* 2. Main Footer Grid */}
         <motion.div
@@ -207,11 +169,11 @@ const socialIcons = [
           <div>
             <motion.div
               whileHover={{ y: -4, scale: 1.02 }}
-              className="p-6 rounded-2xl bg-white/40 dark:bg-neutral-900/30 backdrop-blur-xl border border-white/20 dark:border-neutral-700/30 shadow-xl"
+              className="p-6   rounded-2xl bg-white/40 dark:bg-neutral-900/30 backdrop-blur-xl border border-white/20 dark:border-neutral-700/30 shadow-xl"
             >
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
-                <p className="font-medium text-charcoal-dark dark:text-ivory-light">
+                <p className="font-medium text-charcoal-dark dark:text-ivory-light ">
                   Currently open to selective remote opportunities.
                 </p>
               </div>
@@ -221,7 +183,7 @@ const socialIcons = [
               </p>
               <a
                 href="mailto:ajayvish936@gmail.com"
-                className={`font-medium ${goldGradient} hover:underline`}
+                className={`font-medium ${goldGradient} hover:underline lg:text-sm  `}
               >
                 ajayvish936@gmail.com
               </a>

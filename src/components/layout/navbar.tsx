@@ -12,12 +12,11 @@ import { cn } from "@/lib/utils";
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 const NAV_LINKS = [
-  { name: "Work",       href: "/work",       icon: Briefcase  },
-  { name: "Projects",   href: "/projects",   icon: FolderGit2 },
-  { name: "Experience", href: "/experience", icon: ScrollText },
-  { name: "Contact",    href: "/contact",    icon: Mail       },
+  { name: "Work",       href: "/#work",       icon: Briefcase  },
+  { name: "Projects",   href: "/#projects",   icon: FolderGit2 },
+  { name: "Experience", href: "/#experience", icon: ScrollText },
+  { name: "Contact",    href: "/#contact",    icon: Mail       },
 ];
-
 // ─── Desktop animated letter link ─────────────────────────────────────────────
 
 const AnimatedNavLink = ({
@@ -160,7 +159,7 @@ export function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: "spring", stiffness: 90, damping: 18, delay: 0.1 }}
         className={cn(
-          "fixed top-0 z-50 w-full hidden md:flex transition-all duration-500 py-2" ,
+          "fixed top-0 z-50 w-full hidden md:flex transition-all duration-500 py-2 " ,
           scrolled
             ? "bg-background/90 backdrop-blur-xl shadow-[0_1px_0_0_rgba(0,0,0,0.06)] dark:shadow-[0_1px_0_0_rgba(255,255,255,0.05)]"
             : "bg-background/80 backdrop-blur-md"
@@ -176,7 +175,7 @@ export function Navbar() {
           }}
         />
 
-        <div className="mx-auto flex h-[56px] w-full max-w-7xl items-center justify-between px-6 lg:px-12 2xl:max-w-[1400px]">
+        <div className="mx-auto flex h-[56px] w-full max-w-[var(--container-max-width)] items-center justify-between px-6 md:px-10 lg:px-14">
           {/* Logo */}
           <Link href="/">
             <motion.div
@@ -228,7 +227,7 @@ export function Navbar() {
                 title={link.name}
                 isActive={pathname === link.href}
                 className={cn(
-                  "text-[0.8rem] font-semibold tracking-widest uppercase transition-colors duration-300",
+                  "text-[clamp(0.75rem,0.9vw,0.85rem)] font-semibold tracking-[0.22em] uppercase transition-colors duration-300",
                   pathname === link.href ? "text-foreground" : "text-muted-foreground"
                 )}
               />
@@ -254,12 +253,12 @@ export function Navbar() {
           layout.tsx adds pb-28 on mobile so page
           content is never hidden behind the dock.
       ══════════════════════════════════════════════ */}
-      <div className="md:hidden fixed bottom-6 inset-x-0 z-50 flex justify-center pointer-events-none">
+      <div className="md:hidden fixed bottom-6 inset-x-0 z-50 flex justify-center pointer-events-none   ">
         <motion.nav
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: "spring", stiffness: 260, damping: 22, delay: 0.2 }}
-          className="pointer-events-auto relative flex items-stretch"
+          className="pointer-events-auto relative flex items-stretch  "
           style={{ willChange: "transform" }}
         >
           {/* Ambient glow */}

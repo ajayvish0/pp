@@ -1,10 +1,19 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useInView, useSpring, useTransform } from "framer-motion";
+import { cn } from "@/lib/utils";
+import { motion, useInView, useSpring, useTransform, Variants } from "framer-motion";
 
 // ─── Metrics Data ────────────────────────────────────────────────────────────
-const METRICS = [
+interface Metric {
+  value: number;
+  suffix: string;
+  decimals: number;
+  label: string;
+  subtext: string;
+}
+
+const METRICS: Metric[] = [
   { value: 99.97, suffix: "%", decimals: 2, label: "Uptime SLA", subtext: "distributed systems" },
   { value: 4.2,   suffix: "M", decimals: 1, label: "Requests / Day", subtext: "peak throughput" },
   { value: 38,    suffix: "%", decimals: 0, label: "Latency Reduction", subtext: "architectural refactors" },
@@ -12,7 +21,7 @@ const METRICS = [
 ];
 
 // ─── Animated Number ─────────────────────────────────────────────────────────
-function AnimatedNumber({ value, decimals, suffix, inView }) {
+function AnimatedNumber({ value, decimals, suffix, inView }: { value: number; decimals: number; suffix: string; inView: boolean }) {
   const spring = useSpring(0, { stiffness: 95, damping: 22, mass: 0.5 });
   const display = useTransform(spring, (v) =>
     decimals > 0 ? v.toFixed(decimals) : Math.round(v).toString()
@@ -20,18 +29,18 @@ function AnimatedNumber({ value, decimals, suffix, inView }) {
   const [displayVal, setDisplayVal] = useState(decimals > 0 ? (0).toFixed(decimals) : "0");
 
   useEffect(() => { spring.set(inView ? value : 0); }, [inView, value, spring]);
-  useEffect(() => { return display.onChange(setDisplayVal); }, [display]);
+  useEffect(() => { return display.on("change", setDisplayVal); }, [display]);
 
   return <>{displayVal}{suffix}</>;
 }
 
 // ─── Stat Item ───────────────────────────────────────────────────────────────
-const itemVariants = {
+const itemVariants: Variants = {
   hidden:  { opacity: 0, y: 18 },
   visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 110, damping: 22 } },
 };
 
-function StatItem({ metric, inView, isLast }) {
+function StatItem({ metric, inView, isLast }: { metric: Metric; inView: boolean; isLast: boolean }) {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -53,11 +62,10 @@ function StatItem({ metric, inView, isLast }) {
           }}
         />
         <span
-          className="relative block font-normal leading-none text-[#1C1C1C] dark:text-[#F0EDE8]"
+          className="relative block font-normal leading-none text-[#1C1C1C] dark:text-[#F0EDE8] font-serif"
           style={{
-            fontFamily: "'Playfair Display', serif",
-            fontSize: "clamp(44px, 5vw, 68px)",
-            letterSpacing: "-0.02em",
+            fontSize: "clamp(46px, 6vw, 84px)",
+            letterSpacing: "-0.03em",
           }}
         >
           <AnimatedNumber value={metric.value} decimals={metric.decimals} suffix={metric.suffix} inView={inView} />
@@ -80,16 +88,14 @@ function StatItem({ metric, inView, isLast }) {
 
       {/* Label */}
       <div
-        className="text-[11px] uppercase tracking-[0.22em] font-medium text-[#1C1C1C]/50 dark:text-white/40 transition-colors duration-300 group-hover:text-[#C6A969] dark:group-hover:text-[#D4AF37]"
-        style={{ fontFamily: "'DM Mono', monospace" }}
+        className="text-[11px] uppercase tracking-[0.22em] font-medium text-[#1C1C1C]/50 dark:text-white/40 transition-colors duration-300 group-hover:text-[#C6A969] dark:group-hover:text-[#D4AF37] font-mono"
       >
         {metric.label}
       </div>
 
       {/* Subtext */}
       <div
-        className="text-[12px] text-[#555]/60 dark:text-white/25 leading-snug"
-        style={{ fontFamily: "'DM Sans', sans-serif" }}
+        className="text-[12px] text-[#555]/60 dark:text-white/25 leading-snug font-sans"
       >
         {metric.subtext}
       </div>
@@ -108,11 +114,11 @@ function StatItem({ metric, inView, isLast }) {
 }
 
 // ─── Section Variants ─────────────────────────────────────────────────────────
-const sectionVariants = {
+const sectionVariants: Variants = {
   hidden:  { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.11, delayChildren: 0.08 } },
 };
-const headerVariants = {
+const headerVariants: Variants = {
   hidden:  { opacity: 0, y: 16 },
   visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 20 } },
 };
@@ -125,7 +131,7 @@ export default function ImpactMetrics() {
   return (
     <section
       ref={ref}
-      className="relative w-full bg-[#F5EFE6] dark:bg-[#111111] py-20 px-6 overflow-hidden"
+      className="relative w-full section-padding overflow-hidden"
     >
       {/* Ambient top glow */}
       <div
@@ -136,7 +142,7 @@ export default function ImpactMetrics() {
       />
 
       <motion.div
-        className="relative mx-auto w-full max-w-[1200px]"
+        className="relative container-constrained"
         variants={sectionVariants}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
@@ -145,14 +151,12 @@ export default function ImpactMetrics() {
         <motion.div variants={headerVariants} className="mb-12 flex items-end justify-between">
           <div>
             <p
-              className="mb-2 text-[10px] uppercase tracking-[0.32em] text-[#C6A969]/70 dark:text-[#D4AF37]/50"
-              style={{ fontFamily: "'DM Mono', monospace" }}
+              className="mb-2 text-[10px] uppercase tracking-[0.32em] text-[#C6A969]/70 dark:text-[#D4AF37]/50 font-mono"
             >
               By the numbers
             </p>
             <h2
-              className="text-[clamp(26px,3.5vw,42px)] font-normal leading-tight tracking-tight text-[#1C1C1C] dark:text-[#F0EDE8]"
-              style={{ fontFamily: "'Playfair Display', serif" }}
+              className="text-[clamp(28px,4vw,48px)] font-normal leading-tight tracking-tight text-[#1C1C1C] dark:text-[#F0EDE8] font-serif"
             >
               Engineering Impact
             </h2>
@@ -169,7 +173,7 @@ export default function ImpactMetrics() {
         </motion.div>
 
         {/* Stats grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-10 lg:gap-x-16 gap-y-12">
           {METRICS.map((metric, i) => (
             <StatItem key={i} metric={metric} inView={inView} isLast={i === METRICS.length - 1} />
           ))}

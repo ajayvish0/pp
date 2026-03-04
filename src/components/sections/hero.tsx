@@ -225,7 +225,7 @@ export function Hero() {
   return (
     <section className="relative w-full min-h-[100svh] flex flex-col overflow-hidden">
       <GradientBackground className="flex-1 flex flex-col" isDragging={isOrbDragging}>
-        <div className="mx-auto w-full max-w-[1200px] px-6 lg:px-10 pt-14  md:pt-28 lg:pt-32 pb-12 flex-1 flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-6">
+        <div className="container-constrained pt-12 md:pt-40 pb-12 flex-1 flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-6">
 
           {/* ── LEFT COL ── */}
           <motion.div
@@ -240,7 +240,7 @@ export function Hero() {
             </motion.div>
 
             {/* Headline */}
-            <motion.h1 className="font-serif text-[#1C1C1C] dark:text-[#F3F3F3] leading-[1.06] tracking-tight mb-5 lg:mb-6 text-[38px] sm:text-[46px] md:text-[52px] lg:text-[58px] xl:text-[64px] font-bold">
+            <motion.h1 className="font-serif text-[#1C1C1C] dark:text-[#F3F3F3] leading-[1.06] tracking-tight mb-6 lg:mb-8 text-[clamp(40px,5vw,72px)] font-bold">
               <motion.span variants={textVariants} className="block">Engineering scalable</motion.span>
               <motion.span variants={textVariants} className="block">systems built for</motion.span>
               <motion.span
@@ -267,7 +267,7 @@ export function Hero() {
             {/* Paragraph */}
             <motion.p
               variants={textVariants}
-              className="text-[15px] md:text-[16px] lg:text-[17px] text-[#1C1C1C]/70 dark:text-[#C8C8C8] max-w-[440px] mb-5 lg:mb-6 leading-[1.75]"
+              className="text-[clamp(15px,1.2vw,18px)] text-[#1C1C1C]/70 dark:text-[#C8C8C8] max-w-[540px] mb-6 lg:mb-8 leading-[1.75] font-sans"
             >
               I architect scalable backend systems and performance-driven web applications built for production environments.
             </motion.p>
