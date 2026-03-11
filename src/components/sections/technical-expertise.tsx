@@ -8,127 +8,13 @@ import {
   useMotionValue,
   useTransform,
 } from "framer-motion";
-import {
-  Server,
-  Zap,
-  Layers,
-  Terminal,
-  Code2,
-  Cpu,
-  Database,
-  Layout,
-  BarChart2,
-  Flame,
-  Edit3,
-  Clock,
-  Cloud,
-  Container,
-  RotateCcw,
-  Shield,
-  GitBranch,
-  RefreshCw,
-  Triangle,
-  Box,
-  Wind,
-  FileType,
-  Play,
-} from "lucide-react";
+import { DOMAINS } from "@/data/technical-expertise";
 
-// ────────────────────────────────────────────────
-// CSS Variables & Theme Setup (add to globals.css or root layout)
-/*
 
-:root {
-  --bg: #F5EFE6;
-  --text: #1C1C1C;
-  --surface: #F5EAE0;
-  --accent: #C6A969;
-  --accent-dark: #D4AF37;
-  --accent-gradient: linear-gradient(90deg, #a89078, #d4af37);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #111111;
-    --text: #F3F3F3;
-    --surface: #222222;
-    --accent: #D4AF37;
-  }
-}
-
-body {
-  background: var(--bg);
-  color: var(--text);
-}
-
-.font-serif { font-family: 'Playfair Display', serif; }
-.font-sans  { font-family: 'Inter', system-ui, sans-serif; }
-.font-mono  { font-family: 'DM Mono', ui-monospace, monospace; }
-
-*/
 
 const SPRING = { stiffness: 85, damping: 20 };
 const FILL_SPRING = { stiffness: 120, damping: 20 };
 const EASE = [0.16, 1, 0.3, 1] as const;
-
-// Data remains the same
-const DOMAINS = [
-  {
-    index: "01",
-    title: "Backend Systems",
-    descriptor: "Server Architecture & API Design",
-    depth: "Production-grade distributed systems with sub-100ms response targets",
-    techs: [
-      { label: "Node.js", Icon: Server },
-      { label: "Express", Icon: Zap },
-      { label: "NestJS", Icon: Layers },
-      { label: "FastAPI", Icon: Terminal },
-      { label: "Python", Icon: Code2 },
-      { label: "Go", Icon: Cpu },
-    ],
-  },
-  {
-    index: "02",
-    title: "Frontend Engineering",
-    descriptor: "Interface Systems & Interaction Layer",
-    depth: "Component architectures optimized for performance and accessibility",
-    techs: [
-      { label: "React", Icon: RefreshCw },
-      { label: "Next.js", Icon: Triangle },
-      { label: "Redux", Icon: Box },
-      { label: "Tailwind CSS", Icon: Wind },
-      { label: "TypeScript", Icon: FileType },
-      { label: "Framer Motion", Icon: Play },
-    ],
-  },
-  {
-    index: "03",
-    title: "Data Layer",
-    descriptor: "Storage, Caching & Query Optimization",
-    depth: "Schema design and data pipeline engineering at scale",
-    techs: [
-      { label: "MongoDB", Icon: Database },
-      { label: "PostgreSQL", Icon: Layout },
-      { label: "MySQL", Icon: BarChart2 },
-      { label: "Firebase", Icon: Flame },
-      { label: "Prisma", Icon: Edit3 },
-      { label: "Redis", Icon: Clock },
-    ],
-  },
-  {
-    index: "04",
-    title: "Cloud & Infra",
-    descriptor: "Deployment, Orchestration & Security",
-    depth: "Infrastructure-as-code with zero-downtime deployment pipelines",
-    techs: [
-      { label: "AWS", Icon: Cloud },
-      { label: "Docker", Icon: Container },
-      { label: "CI/CD", Icon: RotateCcw },
-      { label: "Cloudflare", Icon: Shield },
-      { label: "GitHub Actions", Icon: GitBranch },
-    ],
-  },
-] as const;
 
 
 // ────────────────────────────────────────────────
@@ -205,9 +91,9 @@ function TechNode({
           className={`
             relative flex items-center gap-4 px-5 py-4 rounded-2xl
             border backdrop-blur-xl transition-all duration-700
-            border-[rgba(220,212,195,0.4)] bg-[var(--surface)]/40
-            group-hover:border-[var(--accent)]/30 group-hover:bg-[var(--surface)]/70
-            dark:border-white/8 dark:bg-[#222222]/40 dark:group-hover:border-[var(--accent)]/25 dark:group-hover:bg-[#222222]/60
+            border-glass-border bg-secondary/40
+            group-hover:border-accent/30 group-hover:bg-secondary/70
+            dark:bg-secondary/40 dark:group-hover:border-accent/30 dark:group-hover:bg-secondary/60
           `}
         >
           {/* Dynamic Glare Overlay */}
@@ -219,22 +105,21 @@ function TechNode({
           />
 
           {/* Top specular */}
-          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--accent)]/25 to-transparent opacity-60" />
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/25 to-transparent opacity-60" />
 
           <div
             className={`
               size-11 flex items-center justify-center rounded-xl border transition-all duration-500
-              border-[rgba(220,212,195,0.3)] bg-[var(--bg)]/60
-              group-hover:border-[var(--accent)]/40
-              dark:border-white/7 dark:bg-[#111111]/50 dark:group-hover:border-[var(--accent)]/35
+              border-glass-border bg-background/60
+              group-hover:border-accent/40
+              dark:bg-background/50 dark:group-hover:border-accent/40
             `}
             style={{ transform: "translateZ(20px)" }} // Pop out effect
           >
             <Icon
               className={`
                 size-5 transition-all duration-600
-                text-[var(--text)]/50 group-hover:text-[var(--accent)]/90
-                dark:text-[#F3F3F3]/50 dark:group-hover:text-[var(--accent)]/85
+                text-foreground/50 group-hover:text-accent/90
                 ${active ? "drop-shadow-[0_2px_8px_rgba(198,169,105,0.35)]" : ""}
               `}
               strokeWidth={1.5}
@@ -244,10 +129,9 @@ function TechNode({
           <span
             style={{ transform: "translateZ(10px)" }} // Subtle pop out
             className={`
-              font-mono text-[11px] uppercase tracking-[0.16em]
-              text-[var(--text)]/60 transition-colors duration-500
-              group-hover:text-[var(--text)]/90
-              dark:text-[#F3F3F3]/60 dark:group-hover:text-[#F3F3F3]/90
+              font-mono text-xs uppercase tracking-widest
+              text-foreground/60 transition-colors duration-500
+              group-hover:text-foreground/90
             `}
           >
             {label}
@@ -288,24 +172,24 @@ function DomainBand({
         className={`
           group relative w-full text-left rounded-[20px]
           border backdrop-blur-xl transition-all duration-800
-          border-[rgba(220,212,195,0.5)] bg-[var(--surface)]/30
-          hover:border-[var(--accent)]/35 hover:bg-[var(--surface)]/60
-          dark:border-white/9 dark:bg-[#222222]/35
-          dark:hover:border-[var(--accent)]/30 dark:hover:bg-[#222222]/55
-          ${isOpen ? "border-[var(--accent)]/40 bg-[var(--surface)]/50 dark:bg-[#222222]/60" : ""}
+          border-glass-border bg-secondary/30
+          hover:border-accent/35 hover:bg-secondary/60
+          dark:bg-secondary/35
+          dark:hover:border-accent/30 dark:hover:bg-secondary/55
+          ${isOpen ? "border-accent/40 bg-secondary/50 dark:bg-secondary/60" : ""}
         `}
         whileHover={{ scale: 1.004 }}
         transition={{ type: "spring", ...SPRING }}
       >
         {/* Top highlight */}
-        <div className="absolute inset-x-5 top-0 h-px bg-gradient-to-r from-transparent via-[var(--accent)]/30 to-transparent opacity-50" />
+        <div className="absolute inset-x-5 top-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent opacity-50" />
 
         <div className="px-7 py-7 lg:px-10 lg:py-9">
           <div className="flex items-center gap-6 lg:gap-10">
             <span
               className={`
                 font-mono text-xs uppercase tracking-[0.28em]
-                text-[var(--accent)]/60 flex-shrink-0 w-10
+                text-accent/60 flex-shrink-0 w-10
               `}
             >
               {domain.index}
@@ -315,7 +199,7 @@ function DomainBand({
               <h3
                 className={`
                   font-serif text-2xl lg:text-3xl font-medium tracking-tight
-                  leading-[1.06] text-[var(--text)]
+                  leading-[1.06] text-foreground
                 `}
               >
                 {domain.title}
@@ -325,15 +209,15 @@ function DomainBand({
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: isOpen ? 1 : 0 }}
                 transition={{ duration: 1.2, ease: EASE }}
-                className="absolute -bottom-1.5 left-0 h-px origin-left w-40 bg-[var(--accent-gradient)]"
+                className="absolute -bottom-1.5 left-0 h-px origin-left w-40 bg-gradient-to-r from-accent/80 to-accent"
               />
             </div>
 
             <span
               className={`
-                hidden lg:block font-mono text-xs tracking-[0.14em]
-                text-[var(--text)]/55 transition-all duration-700
-                ${isOpen ? "text-[var(--text)]/80" : ""}
+                hidden lg:block font-mono text-xs tracking-widest
+                text-foreground/55 transition-all duration-700
+                ${isOpen ? "text-foreground/80" : ""}
               `}
             >
               {isOpen ? domain.depth : domain.descriptor}
@@ -342,11 +226,11 @@ function DomainBand({
             <motion.div
               className={`
                 size-9 flex items-center justify-center rounded-full border transition-all duration-600
-                border-[rgba(220,212,195,0.4)] text-[var(--text)]/60
-                group-hover:border-[var(--accent)]/40 group-hover:text-[var(--accent)]/90
-                dark:border-white/10 dark:text-[#F3F3F3]/60
-                dark:group-hover:border-[var(--accent)]/35 dark:group-hover:text-[var(--accent)]/90
-                ${isOpen ? "border-[var(--accent)]/50 bg-[var(--accent)]/5 text-[var(--accent)]" : ""}
+                border-glass-border text-foreground/60
+                group-hover:border-accent/40 group-hover:text-accent/90
+                dark:text-foreground/60
+                dark:group-hover:border-accent/40 dark:group-hover:text-accent/90
+                ${isOpen ? "border-accent/50 bg-accent/5 text-accent" : ""}
               `}
             >
               <motion.span 
@@ -372,7 +256,7 @@ function DomainBand({
             className="overflow-hidden relative"
           >
             <div className="px-7 pb-10 pt-5 lg:px-10 lg:pb-14 lg:pt-7 relative z-10 lg:pl-[90px]">
-              <p className="lg:hidden mb-8 text-sm text-[var(--text)]/70 leading-relaxed">
+              <p className="lg:hidden mb-8 text-sm text-foreground/70 leading-relaxed">
                 {domain.depth}
               </p>
 
@@ -405,7 +289,7 @@ export default function EngineeringMatrix() {
   return (
     <section
       ref={ref}
-      className="relative py-20 md:py-28 lg:py-40 overflow-hidden bg-[var(--bg)]"
+      className="relative py-20 md:py-28 lg:py-40 overflow-hidden bg-background"
     >
       {/* Ambient radial glow – very subtle */}
       <div
@@ -417,9 +301,9 @@ export default function EngineeringMatrix() {
       />
 
       {/* Scroll spine – left aligned, gold fill */}
-      <div className="absolute left-6 lg:left-12 top-0 bottom-0 w-px bg-[var(--text)]/5 hidden lg:block pointer-events-none">
+      <div className="absolute left-6 lg:left-12 top-0 bottom-0 w-px bg-foreground/5 hidden lg:block pointer-events-none">
         <motion.div
-          className="w-full origin-top bg-[var(--accent)]/50"
+          className="w-full origin-top bg-accent/50"
           style={{ scaleY: spine }}
         />
       </div>
@@ -427,16 +311,16 @@ export default function EngineeringMatrix() {
       <div className="relative mx-auto max-w-6xl px-6 lg:px-12">
         {/* Header */}
         <div className="mb-20 lg:mb-28">
-          <span className="font-mono text-[10px] uppercase tracking-[0.32em] text-[var(--accent)]/60">
+          <span className="font-mono text-xs uppercase tracking-widest text-accent/60">
             SYS.CLASS — ENG.MATRIX.v5
           </span>
 
-          <h1 className="mt-4 font-serif text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.06] text-[var(--text)]">
+          <h1 className="mt-4 font-serif text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.06] text-foreground">
             Engineering
-            <span className="italic text-[var(--accent)]/90"> Capability Matrix</span>
+            <span className="italic text-accent/90"> Capability Matrix</span>
           </h1>
 
-          <p className="mt-5 max-w-lg text-[var(--text)]/70 leading-relaxed">
+          <p className="mt-5 max-w-lg text-foreground/70 leading-relaxed">
             Precision-engineered systems across the full stack — architecture to deployment.
           </p>
         </div>
@@ -456,7 +340,7 @@ export default function EngineeringMatrix() {
 
         {/* Footer tag */}
         <div className="mt-24 lg:mt-32 text-center">
-          <span className="font-mono text-[10px] uppercase tracking-[0.36em] text-[var(--text)]/40">
+          <span className="font-mono text-xs uppercase tracking-widest text-foreground/40">
             Refined Digital Alchemy • Precision Engineered Portfolio System
           </span>
         </div>

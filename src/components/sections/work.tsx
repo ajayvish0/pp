@@ -1,6 +1,7 @@
 "use client";
 import { useRef, useState, useEffect, useCallback, KeyboardEvent } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   motion,
   useInView,
@@ -15,102 +16,14 @@ import {
 import {
   ArrowUpRight,
   ExternalLink,
-  Layers,
-  Cpu,
-  Database,
-  Terminal,
-  Palette,
-  BarChart3,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { PROJECTS as ALL_PROJECTS } from "@/data/projects";
+import { type Project } from "@/types";
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
-const PROJECTS = [
-  {
-    tag: "CRM System",
-    title: "Nexus CRM",
-    description:
-      "Enterprise relationship layer with intelligent routing, predictive scoring, and real-time pipeline orchestration.",
-    tech: ["Next.js", "PostgreSQL", "Redis", "GraphQL"],
-    year: "2024",
-    annotation: "v3.2.1",
-    href: "#nexus-crm",
-    image:
-      "https://res.cloudinary.com/ducxztw9n/image/upload/v1752499962/tablet_screenshot_crm_dashboard_e1a3e5f3a2.webp",
-    icon: Layers,
-    stat: { label: "Deals tracked", value: "48K+" },
-  },
-  {
-    tag: "AI Platform",
-    title: "Meridian AI",
-    description:
-      "Inference infrastructure for multi-modal workloads with adaptive batching and latency-aware scheduling.",
-    tech: ["Python", "CUDA", "Triton", "FastAPI"],
-    year: "2024",
-    annotation: "v1.0.0",
-    href: "#meridian-ai",
-    image: "https://miro.medium.com/v2/resize:fit:1400/0*TSAWo_AmOa4oP_yh.png",
-    icon: Cpu,
-    stat: { label: "Avg latency", value: "14ms" },
-  },
-  {
-    tag: "Data Pipeline",
-    title: "Stratum Engine",
-    description:
-      "High-throughput event processing system with deterministic replay guarantees and schema evolution support.",
-    tech: ["Rust", "Kafka", "ClickHouse", "Protobuf"],
-    year: "2023",
-    annotation: "v2.4.0",
-    href: "#stratum-engine",
-    image: "https://miro.medium.com/1*HkFEqPZ9w6sdwVpVHB6X6w.png",
-    icon: Database,
-    stat: { label: "Events/sec", value: "2.4M" },
-  },
-  {
-    tag: "Dev Tooling",
-    title: "Cartograph CLI",
-    description:
-      "Infrastructure mapping and dependency visualisation tool for distributed microservice architectures.",
-    tech: ["Go", "D3.js", "Docker", "gRPC"],
-    year: "2023",
-    annotation: "v0.9.3",
-    href: "#cartograph-cli",
-    image:
-      "https://codescene.com/hs-fs/hubfs/microservices-change-coupling-1.png?width=1526&name=microservices-change-coupling-1.png",
-    icon: Terminal,
-    stat: { label: "Services mapped", value: "200+" },
-  },
-  {
-    tag: "Design System",
-    title: "Substrate UI",
-    description:
-      "Token-driven design language built for precision. Every component is a contract between design and engineering.",
-    tech: ["TypeScript", "Tailwind", "Radix", "Storybook"],
-    year: "2024",
-    annotation: "v4.1.0",
-    href: "#substrate-ui",
-    image:
-      "https://deifkwefumgah.cloudfront.net/screenshots/thumbnail/shadcn-ui-thumbnail-2x.webp",
-    icon: Palette,
-    stat: { label: "Components", value: "340+" },
-  },
-  {
-    tag: "Analytics",
-    title: "Prism Analytics",
-    description:
-      "Real-time behavioural analytics with cohort segmentation, funnel modelling, and anomaly detection at scale.",
-    tech: ["React", "TimescaleDB", "Python", "WebGL"],
-    year: "2023",
-    annotation: "v2.0.1",
-    href: "#prism-analytics",
-    image: "https://www.modern.ai/assets/platform/platform-scorecard.png",
-    icon: BarChart3,
-    stat: { label: "Data points/day", value: "1.2B" },
-  },
-] as const;
-
-type Project = (typeof PROJECTS)[number];
+const PROJECTS = ALL_PROJECTS.filter((p) => p.featured);
 
  
 function CountUp({ to, suffix = "" }: { to: number; suffix?: string }) {
@@ -130,7 +43,7 @@ function CountUp({ to, suffix = "" }: { to: number; suffix?: string }) {
 function ImageSkeleton() {
   return (
     <div className="absolute inset-0 overflow-hidden">
-      <div className="absolute inset-0 bg-[#ede5d8]/70 dark:bg-[#1f1f1f]" />
+      <div className="absolute inset-0 bg-muted" />
       <motion.div
         className="absolute inset-0"
         style={{
@@ -217,8 +130,8 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       <div
         className={cn(
           "relative flex-1 flex flex-col overflow-hidden rounded-[20px] h-full",
-          "bg-white/70 dark:bg-[#1a1a1a]/80",
-          "border border-[rgba(220,212,195,0.65)] dark:border-white/[0.07]",
+          "bg-glass-surface",
+          "border border-glass-border",
           "shadow-[0_2px_16px_rgba(0,0,0,0.05),0_1px_2px_rgba(0,0,0,0.03),inset_0_1px_0_rgba(255,255,255,0.90)]",
           "dark:shadow-[0_20px_60px_rgba(0,0,0,0.40),inset_0_1px_0_rgba(255,255,255,0.05)]",
           "backdrop-blur-2xl",
@@ -242,7 +155,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               aria-hidden="true"
               className={cn(
                 "absolute w-[18px] h-[18px] pointer-events-none z-10 rounded-[2px]",
-                "border-[rgba(168,144,120,0.40)] dark:border-[rgba(212,175,55,0.18)]",
+                "border-accent/40 dark:border-accent/20",
                 cls
               )}
             />
@@ -306,17 +219,13 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             />
           </motion.div>
 
-          {/* Warm gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-white/95 dark:from-[#1a1a1a] via-white/[0.06] dark:via-transparent to-[#F5EFE6]/10 dark:to-transparent pointer-events-none" />
+          {/* Gradient overlays for text contrast */}
+          <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/60 to-transparent pointer-events-none z-[5]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/5 to-transparent pointer-events-none z-[5]" />
 
           {/* Tag pill — MorphingBadge style */}
           <motion.div
-            className="absolute top-3 left-3 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-full backdrop-blur-xl text-[10px] font-mono tracking-[0.18em] uppercase select-none"
-            style={{
-              background: "rgba(198,169,105,0.10)",
-              border: "1px solid rgba(198,169,105,0.28)",
-              color: "#C6A969",
-            }}
+            className="absolute top-3 left-3 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-full backdrop-blur-md text-[10px] font-mono tracking-widest uppercase select-none border border-white/20 bg-black/40 text-white shadow-sm"
             animate={{ y: hovered ? -2 : 0 }}
             transition={{ type: "spring", stiffness: 90, damping: 18 }}
             aria-label={project.tag}
@@ -325,12 +234,12 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             {project.tag}
           </motion.div>
 
-          <span
-            className="absolute top-3 right-3 z-10 font-mono text-[10px] tracking-widest text-[#1C1C1C]/35 dark:text-white/25 select-none"
+          <div
+            className="absolute top-3 right-3 z-10 px-3 py-1.5 rounded-full backdrop-blur-md font-mono text-[10px] tracking-widest text-white/90 bg-black/40 border border-white/10 select-none shadow-sm"
             aria-label={`Year: ${project.year}`}
           >
             {project.year}
-          </span>
+          </div>
 
           {/* Stat reveal */}
           <motion.div
@@ -341,13 +250,12 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             aria-hidden="true"
           >
             <div
-              className="leading-none text-[#C6A969] dark:text-[#D4AF37] font-serif"
-              style={{ fontSize: "1.2rem" }}
+              className="leading-none text-accent font-serif text-xl"
             >
               {project.stat.value}
             </div>
             <div
-              className="mt-0.5 text-[9px] uppercase tracking-[0.22em] text-[#1C1C1C]/35 dark:text-white/25 font-mono"
+              className="mt-0.5 text-[10px] uppercase tracking-widest text-muted-foreground font-mono"
             >
               {project.stat.label}
             </div>
@@ -358,7 +266,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         <div className="flex-1 p-6 flex flex-col relative z-[3]">
           <div className="flex items-start justify-between gap-3 mb-2">
             <h3
-              className="leading-tight tracking-tight font-normal font-serif text-[#1C1C1C]"
+              className="leading-tight tracking-tight font-normal font-serif text-foreground"
               style={{
                 fontSize: "clamp(1.2rem, 1.8vw, 1.45rem)",
                 color: hovered ? "#C6A969" : undefined,
@@ -371,22 +279,21 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               aria-hidden="true"
               animate={{ rotate: hovered ? 45 : 0, opacity: hovered ? 1 : 0.25 }}
               transition={{ type: "spring", stiffness: 90, damping: 18 }}
-              className="mt-0.5 shrink-0 text-[#C6A969]"
+              className="mt-0.5 shrink-0 text-accent"
             >
               <ArrowUpRight size={16} strokeWidth={1.8} />
             </motion.div>
           </div>
 
           <p
-            className="leading-relaxed mb-5 flex-1 line-clamp-3 group-hover:line-clamp-none transition-all duration-300 text-[#1C1C1C]/55 dark:text-white/40 font-sans"
-            style={{ fontSize: "0.8rem" }}
+            className="text-sm leading-relaxed mb-5 flex-1 line-clamp-3 group-hover:line-clamp-none transition-all duration-300 text-muted-foreground font-sans"
           >
             {project.description}
           </p>
 
           {/* Animated gold underline — ImpactMetrics StatItem: 20% → 100% */}
           <div className="relative h-px mb-5 overflow-hidden" aria-hidden="true">
-            <div className="absolute inset-0 bg-[#1C1C1C]/[0.08] dark:bg-white/[0.07]" />
+            <div className="absolute inset-0 bg-foreground/10" />
             <motion.div
               className="absolute inset-y-0 left-0"
               animate={{ width: hovered ? "100%" : "20%" }}
@@ -403,22 +310,10 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             {project.tech.map((t, i) => (
               <motion.li
   key={t}
-  initial={{ opacity: 0, scale: 0.85 }}
-  animate={inView ? { opacity: 1, scale: 1 } : {}}
-  transition={{ delay: index * 0.08 + i * 0.05 + 0.25 }}
-  className="font-mono text-[10px] px-2.5 py-1 rounded-full transition-all duration-300
-             backdrop-blur-md shadow-[0_6px_15px_rgba(0,0,0,0.06)]"
-  style={{
-    background: hovered
-      ? "rgba(198,169,105,0.07)"        // gold highlight
-      : "rgba(245,239,230,0.4)",        // light theme neutral
-    border: hovered
-      ? "1px solid rgba(198,169,105,0.26)"
-      : "1px solid rgba(28,28,28,0.1)",  // subtle border for light theme
-    color: hovered
-      ? "#C6A969"
-      : "rgba(28,28,28,0.85)",          // dark gray text for light theme
-  }}
+  className={cn(
+    "font-mono text-[10px] px-2.5 py-1 rounded-full transition-all duration-300 backdrop-blur-md shadow-[0_6px_15px_rgba(0,0,0,0.06)] border",
+    hovered ? "bg-accent/10 border-accent/30 text-accent" : "bg-secondary/50 border-border text-foreground/80"
+  )}
 >
   {t}
 </motion.li>
@@ -428,7 +323,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           <div className="flex items-center justify-between">
             <motion.a
               href={project.href}
-              className="font-mono text-[10.5px] tracking-[0.22em] uppercase flex items-center gap-1.5 text-[#C6A969] dark:text-[#D4AF37] rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C6A969] focus-visible:ring-offset-2"
+              className="font-mono text-xs tracking-widest uppercase flex items-center gap-1.5 text-accent rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               animate={{ x: hovered ? 4 : 0 }}
               transition={{ type: "spring", stiffness: 90, damping: 18 }}
               aria-label={`View ${project.title} project`}
@@ -436,7 +331,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               View project <ArrowUpRight size={11} strokeWidth={2} aria-hidden="true" />
             </motion.a>
             <span
-              className="font-mono text-[9px] text-[#1C1C1C]/20 dark:text-white/15 select-none"
+              className="font-mono text-[10px] text-muted-foreground/50 select-none"
               aria-label={`Version ${project.annotation}`}
             >
               {project.annotation}
@@ -497,22 +392,12 @@ function FilterTabs({
             onClick={() => onChange(f === "All" ? null : f)}
             onKeyDown={(e) => handleKeyDown(e, idx)}
             className={`
-              font-mono text-[11px] tracking-[0.2em] uppercase px-4 py-1.5 rounded-full
+              font-mono text-xs tracking-widest uppercase px-4 py-1.5 rounded-full
               border backdrop-blur-md shadow-[0_8px_20px_rgba(0,0,0,0.08)]
-              focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C6A969] focus-visible:ring-offset-2
+              focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2
               transition-all duration-300
+              ${isActive ? "bg-accent/10 border-accent/40 text-accent" : "bg-background/40 border-border text-foreground/80"}
             `}
-            style={{
-              backgroundColor: isActive
-                ? "rgba(198,169,105,0.09)" // active glow
-                : "rgba(245,239,230,0.4)",  // light theme background fallback
-              borderColor: isActive
-                ? "rgba(198,169,105,0.35)"
-                : "rgba(28,28,28,0.1)",     // subtle border for inactive
-              color: isActive
-                ? "#C6A969"
-                : "rgba(28,28,28,0.85)",     // dark enough for light theme
-            }}
             whileHover={{ y: -2, scale: 1.02 }}
             whileTap={{ scale: 0.96 }}
             transition={{ type: "spring", stiffness: 90, damping: 18 }}
@@ -545,7 +430,7 @@ export default function SelectedWork() {
 
   return (
     <section
-    id="projects"
+      id="work"
       ref={ref}
       aria-label="Selected work"
       className="relative section-padding pt-0 overflow-hidden"
@@ -555,7 +440,7 @@ export default function SelectedWork() {
         aria-hidden="true"
         className="absolute inset-0 pointer-events-none opacity-[0.016] dark:opacity-[0.028]"
         style={{
-          backgroundImage: "radial-gradient(circle, #1C1C1C 1px, transparent 1px)",
+          backgroundImage: "radial-gradient(circle, var(--color-foreground) 1px, transparent 1px)",
           backgroundSize: "32px 32px",
         }}
       />
@@ -589,7 +474,7 @@ export default function SelectedWork() {
               style={{ background: "#D4AF37", opacity: 0.65 }}
             />
             <p
-              className="text-[10px] uppercase tracking-[0.32em] text-[#C6A969]/70 dark:text-[#D4AF37]/50 font-mono"
+              className="text-xs uppercase tracking-widest text-accent/70 font-mono"
             >
               Precision Engineered
             </p>
@@ -598,7 +483,7 @@ export default function SelectedWork() {
           {/* Title & Stats */}
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
             <h2
-              className="font-normal leading-[1.06] tracking-tight text-[#1C1C1C] dark:text-[#F0EDE8] font-serif"
+              className="font-normal leading-[1.06] tracking-tight text-foreground font-serif"
               style={{
                 fontSize: "clamp(42px, 6vw, 82px)",
               }}
@@ -628,13 +513,13 @@ export default function SelectedWork() {
             >
               {[
                 { n: 6, suffix: "+", label: "Projects" },
-                { n: 4, suffix: " yrs", label: "Experience" },
+                { n: 1.5, suffix: " yrs", label: "Experience" },
                 { n: 100, suffix: "%", label: "Shipped" },
               ].map(({ n, suffix, label }) => (
                 <div key={label} className="text-center lg:text-right">
                   <dt className="sr-only">{label}</dt>
                   <dd
-                    className="font-normal leading-none text-[#1C1C1C] dark:text-[#F0EDE8] font-serif"
+                    className="font-normal leading-none text-foreground font-serif"
                     style={{
                       fontSize: "clamp(26px, 2.8vw, 40px)",
                       letterSpacing: "-0.02em",
@@ -643,7 +528,7 @@ export default function SelectedWork() {
                     <CountUp to={n} suffix={suffix} />
                   </dd>
                   <div
-                    className="text-[10px] uppercase tracking-[0.22em] font-medium text-[#1C1C1C]/45 dark:text-white/35 mt-1 font-mono"
+                    className="text-[10px] uppercase tracking-widest font-medium text-muted-foreground mt-1 font-mono"
                     aria-hidden="true"
                   >
                     {label}
@@ -710,48 +595,53 @@ export default function SelectedWork() {
 
         {/* Footer */}
         <motion.div
-          className="flex flex-col sm:flex-row items-center justify-between gap-6 mt-16 pt-10 border-t border-[#1C1C1C]/7"
+          className={cn(
+            "flex flex-col sm:flex-row items-center gap-6 mt-16 pt-10 border-t border-border",
+            ALL_PROJECTS.length > PROJECTS.length ? "justify-between" : "justify-center"
+          )}
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.72, type: "spring", stiffness: 60, damping: 16 }}
         >
           <p
-            className="text-[11px] tracking-[0.26em] uppercase text-[#1C1C1C]/26 dark:text-white/18 font-mono"
+            className="text-xs tracking-widest uppercase text-muted-foreground/60 font-mono"
           >
-            {PROJECTS.length} selected works · 2023–2024
+            {PROJECTS.length} selected works
           </p>
 
-          <motion.button
-            className={cn(
-              "group relative inline-flex items-center justify-center gap-2.5",
-              "rounded-[14px] px-8 h-[52px] text-[13px] font-semibold",
-              "bg-[#1C1C1C] dark:bg-[#222] text-white dark:text-[#F3F3F3]",
-              "shadow-[0_4px_15px_rgba(0,0,0,0.10)] overflow-hidden cursor-pointer",
-              "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C6A969] focus-visible:ring-offset-2 font-mono"
-            )}
-            style={{ letterSpacing: "0.06em" }}
-            whileHover={{
-              scale: 1.04,
-              y: -2,
-              boxShadow: "0 20px 40px rgba(0,0,0,0.18)",
-            }}
-            whileTap={{ scale: 0.97 }}
-            transition={{ type: "spring", stiffness: 90, damping: 18 }}
-            aria-label="Explore full project archive"
-          >
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none"
-            />
-            Explore Archive
-            <motion.span
-              aria-hidden="true"
-              animate={{ x: [0, 3, 0] }}
-              transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
-            >
-              <ExternalLink size={13} strokeWidth={1.8} />
-            </motion.span>
-          </motion.button>
+            <Link href="/projects">
+              <motion.div
+                className={cn(
+                  "group relative inline-flex items-center justify-center gap-2.5",
+                  "rounded-[14px] px-8 h-[52px] text-[13px] font-semibold",
+                  "bg-zinc-900 dark:bg-zinc-800 text-zinc-50",
+                  "shadow-[0_4px_15px_rgba(0,0,0,0.10)] overflow-hidden cursor-pointer",
+                  "focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 font-mono"
+                )}
+                style={{ letterSpacing: "0.06em" }}
+                whileHover={{
+                  scale: 1.04,
+                  y: -2,
+                  boxShadow: "0 20px 40px rgba(0,0,0,0.18)",
+                }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ type: "spring", stiffness: 90, damping: 18 }}
+                aria-label="Explore full project archive"
+              >
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none"
+                />
+                Explore Archive
+                <motion.span
+                  aria-hidden="true"
+                  animate={{ x: [0, 3, 0] }}
+                  transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
+                >
+                  <ExternalLink size={13} strokeWidth={1.8} />
+                </motion.span>
+              </motion.div>
+            </Link>
         </motion.div>
       </div>
     </section>

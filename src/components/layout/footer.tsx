@@ -36,13 +36,13 @@ const headingVariants: Variants = {
 
 const shimmer = {
   backgroundImage:
-    'linear-gradient(90deg, transparent, rgba(212,175,55,0.4), transparent)',
+    'linear-gradient(90deg, transparent, var(--accent-glow), transparent)',
   backgroundSize: '200% 100%',
   animation: 'shimmer 3.5s linear infinite',
 };
 
 const goldGradient =
-  'bg-gradient-to-r from-[#a89078] to-[#d4af37] bg-clip-text text-transparent';
+  'bg-gradient-to-r from-accent/80 to-accent bg-clip-text text-transparent';
 
 const Footer = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -59,7 +59,7 @@ const socialIcons = [
     { name: 'Projects', href: '/projects' },
     { name: 'Experience', href: '/experience' },
     { name: 'Contact', href: '/contact' },
-    { name: 'Resume', href: '/resume' },
+    { name: 'Resume', href: 'https://drive.google.com/uc?export=download&id=1qmNVtwVGhX9Pg8EAaXR53GU_PYznxvUA' },
   ];
 
   return (
@@ -112,7 +112,7 @@ const socialIcons = [
       aria-label={label}
       whileHover={{ y: -6, scale: 1.15 }}
       transition={{ type: 'spring', stiffness: 300 }}
-      className="text-neutral-600 dark:text-neutral-400 hover:text-[#d4af37] transition-colors"
+      className="text-neutral-600 dark:text-neutral-400 hover:text-accent transition-colors"
     >
       <Icon size={28} />
     </motion.a>
@@ -126,18 +126,33 @@ const socialIcons = [
               Navigation
             </h3>
             <ul className="space-y-3 text-neutral-600 dark:text-neutral-400">
-              {navigationItems.map((item) => (
-                <motion.li
-                  key={item.name}
-                  whileHover={{ x: 6 }}
-                  transition={{ type: 'spring', stiffness: 300 }}
-                >
-                  <Link href={item.href} className="hover:text-[#d4af37] transition-colors group relative inline-block">
-                    {item.name}
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#a89078] to-[#d4af37] group-hover:w-full transition-all duration-400" />
-                  </Link>
-                </motion.li>
-              ))}
+              {navigationItems.map((item) => {
+                const isResume = item.name === 'Resume';
+                return (
+                  <motion.li
+                    key={item.name}
+                    whileHover={{ x: 6 }}
+                    transition={{ type: 'spring', stiffness: 300 }}
+                  >
+                    {isResume ? (
+                      <a
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-accent transition-colors group relative inline-block"
+                      >
+                        {item.name}
+                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-accent/80 to-accent group-hover:w-full transition-all duration-400" />
+                      </a>
+                    ) : (
+                      <Link href={item.href} className="hover:text-accent transition-colors group relative inline-block">
+                        {item.name}
+                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-accent/80 to-accent group-hover:w-full transition-all duration-400" />
+                      </Link>
+                    )}
+                  </motion.li>
+                );
+              })}
             </ul>
           </div>
 
@@ -156,7 +171,7 @@ const socialIcons = [
               ].map((item) => (
                 <motion.li
                   key={item}
-                  whileHover={{ x: 8, color: '#d4af37' }}
+                  whileHover={{ x: 8, color: 'var(--accent)' }}
                   transition={{ type: 'spring', stiffness: 250 }}
                 >
                   {item}
@@ -179,7 +194,7 @@ const socialIcons = [
               </div>
               <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-2">
                 Response time:{' '}
-                <span className="text-[#d4af37]">less than 24 hours</span>
+                <span className="text-accent">less than 24 hours</span>
               </p>
               <a
                 href="mailto:ajayvish936@gmail.com"
@@ -194,7 +209,7 @@ const socialIcons = [
 
       {/* Optional copyright */}
       <div className="text-center mt-16 text-neutral-500 dark:text-neutral-600 text-sm">
-        © {new Date().getFullYear()} AV — Crafted with precision.
+        © {new Date().getFullYear()} Ajay Vishwakarma — Crafted with precision.
       </div>
     </footer>
   );

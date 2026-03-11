@@ -1,0 +1,95 @@
+Ajay Vishwakarma
+Pune, Maharashtra
+♂phone+91-626-254-2222 /envel⌢peajayvish936@gmail.com /linkedinlinkedin.com/ajay /githubgithub.com/ajayvish0 /twitterX.com/ajayvish01
+Technical Skills
+Languages :TypeScript, JavaScript, C/C++, SQL, HTML/CSS
+Front-end : React.js, Next.js, Redux, Recoil, Tailwind CSS
+Back-end : Node.js, Express.js, RESTful APIs, FastAPI, Nest.js
+Databases : MongoDB, PostgreSQL, MySQL, Firebase
+DevOps & Cloud : Git, Docker, CI/CD, AWS, Cloudflare
+Tools : Prisma ORM, Postman, Agile methodologies, Jest, Swagger, Figma
+Experience
+Freelance Software Development Jan 2026 – Present
+Software Engineer Remote
+•Architected and implemented scalable backend workflows for a property-tech CRM platform , automating lead
+generation pipelines and reducing manual processing by 70% .
+•Optimized API performance by 40% through scheduled data caching strategies and efficient upsert-based database
+synchronization .
+•Engineered a production-grade softphone module handling call lifecycle management, backend event integration, and
+real-time state tracking, improving operational efficiency by 35% .
+•Designed modular RESTful APIs and scalable CRUD architecture for lead and contact management, enhancing
+maintainability and extensibility by 50% .
+•Improved system scalability by refactoring time-intensive operations into asynchronous background jobs , increasing
+overall throughput by 45% .
+•Strengthened data integrity and synchronization using optimized indexing and transactional database patterns, reducing
+data inconsistency issues by 60% .
+Cloudnexus Dec 2024 – Oct 2025
+Full Stack Developer Bhopal, India
+•Spearheaded the end-to-end development of Jobra AI , an intelligent ATS integrating ML models, improving applicant
+matching accuracy by 45% and reducing recruiter screening time by 60% .
+•Led cross-functional coordination and iterative delivery cycles, improving overall product delivery speed by 35% .
+•Collaborated with Anthropic on projects ( P18, P28, Claude Code ) to enhance large language model performance by
+refactoring GitHub repositories and integrating human-in-the-loop feedback , increasing model interpretability by
+25% .
+•Interviewed and evaluated engineering candidates, reducing average onboarding time by 30% and improving hiring
+efficiency.
+•Designed and delivered a Threat Management System with the following:
+∗Integrated 2FA and secure role-based access, increasing user authentication reliability by 50% .
+∗Built Excel ingestion module with dynamic visualization (tables + charts), boosting client reporting efficiency by
+70% .
+∗Engineered with React.js, Redux Toolkit, MongoDB, Node.js , resulting in 40% faster data flow and
+rendering.
+•Enhanced productivity by 30% through mastery in prompt engineering , enabling earlier-than-scheduled deliveries.
+Stackmentalist Sep 2024 – Nov 2024
+Full Stack Developer Intern Pune, maharashtra
+•Developed and launched the official company website using Next.js ,Next-Intl , and Tailwind CSS , ensuring
+responsiveness and multilingual support.
+•Contributed to a Customer Relationship Management (CRM) system , creating robust APIs documented with
+Swagger , improving scalability and efficiency.
+•Played a pivotal role in building a Human Resource Management System (HRMS) , working on modules such as:
+∗Attendance: Implemented location-based check-ins/check-outs.
+∗Task Management: Designed workflows for task assignment and tracking.
+∗Holiday Creation: Built user-friendly interfaces and backend logic.
+∗Leave Management: Developed modules for leave application, approval workflows, and notifications.
+∗Notification System: Designed real-time and scheduled notifications to enhance user engagement.
+•Demonstrated teamwork ,ownership , and leadership skills while collaborating effectively with a cross-functional
+team.
+•Enhanced project planning and problem-solving abilities by delivering high-quality solutions within tight deadlines.
+Persistent Sep 2023 – Nov 2023
+Martian Summer Intern Bhopal, M.P.
+•Completed comprehensive training in DBMS, Computer Networks, Operating Systems, and Front-end Development,
+achieving a 95% completion rate.
+•Improved problem-solving skills by applying theoretical knowledge to 20+ practical coding challenges.
+•Developed a in-depth understanding of software development lifecycle, improving project planning abilities by 40%.
+•Boosted code quality and efficiency by 25% through iterative development and mentor feedback.
+Projects
+TeamSketch |React.js, Socket.io, Node.js, Tailwind CSS Aug 2024
+•Architected a high-performance collaborative whiteboard application using React.js and Socket.io, enabling real-time
+multi-user interaction and increasing team productivity by 35%.
+•Implemented WebSocket communication supporting 50+ concurrent users, enhancing remote collaboration efficiency.
+•Engineered an intuitive UI with advanced drawing tools (rectangles, circles, freehand) and text functionality using
+Tailwind CSS, reducing development time by 30% while ensuring cross-device compatibility.
+•Optimized React.js frontend architecture, significantly improving rendering performance for complex drawing operations.
+Paytm Clone |Next.js, Express.js, PostgreSQL, Turborepo, Tailwind CSS, NextAuth June 2024
+•Engineered a scalable fintech application using a modern tech stack, resulting in a 40% improvement in transaction
+processing speed.
+•Introduced user authentication with NextAuth, enhancing security and reducing unauthorized access attempts by 95%
+•Integrated onramp transaction functionality, processing an average of 5,000 daily transactions with 99 .9% uptime.
+•Implemented real-time balance updates and transaction history, reducing customer support inquiries by 50%.
+PDF-Chat Application |LangChain, React.js, PostgreSQL, Google Drive May 2024
+•Engineered a full-stack PDF chat application using FastAPI, React.js, and PostgreSQL, reducing document query time
+by 40%.
+•Integrated LangChain for NLP processing, enabling accurate responses to user queries with 85% relevance rate
+•Established secure file storage using Google Drive API, supporting documents up to 50MB and ensuring 99 .9% data
+integrity.
+•Leveraged FastAPI’s asynchronous capabilities, reducing API response times by 50%.
+Medium Blog Clone |React.js, Node.js, PostgreSQL, Tailwind CSS, Workers March 2024
+•Built responsive blog app using React.js, Node.js, PostgreSQL, improving load times by 35%.
+•Established secure auth system and optimized API, reducing server response time by 40%.
+•Used Tailwind CSS for cross-device UI consistency, boosting mobile engagement by 25%.
+Education
+Oriental Institute of Science and Technology Jul 2020 – Jun 2024
+Bachelor of Technology in Computer Science (AIML) Bhopal, M.P.
+CGPA: 7.9/10
+Certifications
+•C++ Specialization (Coursera) •DBMS Essentials (Coursera) •Programming Essentials in Python (Open-EDG)

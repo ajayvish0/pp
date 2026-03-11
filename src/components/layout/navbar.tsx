@@ -4,16 +4,16 @@ import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Briefcase, FolderGit2, ScrollText, Mail, Home } from "lucide-react";
+import { Briefcase, BrainCircuit, ScrollText, Mail, Home } from "lucide-react";
 
 import { ThemeToggle } from "@/components/theme-toggle";
 import { cn } from "@/lib/utils";
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
-
+ 
 const NAV_LINKS = [
   { name: "Work",       href: "/#work",       icon: Briefcase  },
-  { name: "Projects",   href: "/#projects",   icon: FolderGit2 },
+  { name: "Tech",   href: "/#tech-stack",       icon: BrainCircuit },
   { name: "Experience", href: "/#experience", icon: ScrollText },
   { name: "Contact",    href: "/contact",     icon: Mail       },
 ];
@@ -64,7 +64,7 @@ const AnimatedNavLink = ({
     <span
       className={cn(
         "absolute -bottom-2 left-0 h-[1.5px] transition-all duration-300 ease-out",
-        "bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500",
+        "bg-gradient-to-r from-accent/80 via-accent to-accent/80",
         isActive ? "w-full" : "w-0 group-hover:w-full",
         underlineClassName
       )}
@@ -126,7 +126,7 @@ const DockItem = ({
       {isActive && (
         <motion.span
           layoutId="dock-dot"
-          className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 h-[3px] w-[3px] rounded-full bg-amber-400"
+          className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 h-[3px] w-[3px] rounded-full bg-accent"
           transition={{ type: "spring", stiffness: 400, damping: 25 }}
         />
       )}
@@ -171,7 +171,7 @@ export function Navbar() {
           className="absolute top-0 inset-x-0 h-[1px] pointer-events-none"
           style={{
             background:
-              "linear-gradient(90deg, transparent 0%, rgba(251,191,36,0.6) 30%, rgba(251,191,36,0.9) 50%, rgba(251,191,36,0.6) 70%, transparent 100%)",
+              "linear-gradient(90deg, transparent 0%, var(--accent-glow) 30%, var(--accent) 50%, var(--accent-glow) 70%, transparent 100%)",
           }}
         />
 
@@ -208,7 +208,7 @@ export function Navbar() {
                     className={cn(
                       "inline-block",
                       letter === "V" && "italic font-light",
-                      letter === "." && "text-amber-400"
+                      letter === "." && "text-accent"
                     )}
                   >
                     {letter}
@@ -267,7 +267,7 @@ export function Navbar() {
             className="absolute -inset-3 rounded-[28px] pointer-events-none"
             style={{
               background:
-                "radial-gradient(ellipse 80% 100% at 50% 60%, rgba(251,191,36,0.12) 0%, rgba(167,139,250,0.08) 50%, transparent 80%)",
+                "radial-gradient(ellipse 80% 100% at 50% 60%, var(--accent-glow) 0%, transparent 80%)",
               filter: "blur(8px)",
             }}
           />
@@ -333,7 +333,7 @@ export function Navbar() {
               {pathname === "/" && (
                 <motion.span
                   layoutId="dock-dot"
-                  className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 h-[3px] w-[3px] rounded-full bg-amber-400"
+                  className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 h-[3px] w-[3px] rounded-full bg-accent"
                   transition={{ type: "spring", stiffness: 400, damping: 25 }}
                 />
               )}

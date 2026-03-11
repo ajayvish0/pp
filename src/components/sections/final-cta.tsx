@@ -27,7 +27,7 @@ function Particle({ x, y, size, duration, delay, dx } : any) : any {
 }
 
 // ─── Architectural CTA Button ──────────────────────────────────────────────────
-function ArchitecturalButton({ label, href }) {
+function ArchitecturalButton({ label, href }: { label: string; href?: string }) {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -115,12 +115,15 @@ function ArchitecturalButton({ label, href }) {
 }
 
 // ─── Underline Text Link ───────────────────────────────────────────────────────
-function UnderlineLink({ label, href }) {
+function UnderlineLink({ label, href, target, download }: { label: string; href?: string; target?: string; download?: string | boolean }) {
   const [hovered, setHovered] = useState(false);
 
   return (
     <a
       href={href || "#"}
+      target={target}
+      download={download}
+      rel={target === "_blank" ? "noopener noreferrer" : undefined}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className="
@@ -151,7 +154,7 @@ export default function FinalCTA() {
     if (isInView) controls.start("visible");
   }, [isInView, controls]);
 
-  const fadeUp = {
+  const fadeUp: any = {
     hidden: { opacity: 0, y: 26 },
     visible: (i = 0) => ({
       opacity: 1,
@@ -331,7 +334,7 @@ useEffect(() => {
             animate={controls}
             className="flex justify-center"
           >
-            <UnderlineLink label="Download CV" href="#cv" />
+            <UnderlineLink label="Download Resume" href="https://drive.google.com/uc?export=download&id=1qmNVtwVGhX9Pg8EAaXR53GU_PYznxvUA" target="_blank" download />
           </motion.div>
         </div>
 

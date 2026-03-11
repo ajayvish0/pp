@@ -36,8 +36,8 @@ export const contactSchema = z.object({
     .optional()
     .or(z.literal("")),
 
-  subject: z.enum(["hiring", "collaboration", "project", "other"], {
-    errorMap: () => ({ message: "Please select a subject" }),
+  subject: z.enum(["hiring", "collaboration", "project", "other"] as const, {
+    message: "Please select a subject",
   }),
 
   message: z

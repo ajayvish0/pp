@@ -22,8 +22,8 @@ const dmMono = DM_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio",
-  description: "Personal Portfolio",
+  title: "Ajay Vishwakarma | Portfolio",
+  description: "Personal Portfolio of Ajay Vishwakarma, Software Engineer focused on scalable backend systems.",
 };
 
 export default function RootLayout({

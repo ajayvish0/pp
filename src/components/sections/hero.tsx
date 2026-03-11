@@ -163,7 +163,7 @@ function MorphingBadge() {
             transition={{ type: "spring", stiffness: 280, damping: 24 }}
             style={{ display: "flex", flexShrink: 0 }}
           >
-           <Icon className="w-4 h-4 text-[#9f8462] dark:text-[#d4af37]" />
+           <Icon className="w-4 h-4 text-accent" />
           </motion.div>
         </AnimatePresence>
 
@@ -171,7 +171,7 @@ function MorphingBadge() {
         <AnimatePresence mode="wait">
          <motion.div
   key={index}
-  className="flex text-[13px] font-semibold tracking-[-0.005em] whitespace-nowrap text-[#1f1a14] dark:text-[#f5f1e8]"
+  className="flex text-sm font-semibold tracking-tight whitespace-nowrap text-foreground"
 >
             {text.split("").map((char, i) => (
               <motion.span
@@ -216,11 +216,13 @@ export function Hero() {
   };
   const handleCardMouseLeave = () => { mouseX.set(0); mouseY.set(0); };
 
+ 
   const typedLines = useTypewriter([
-    "function buildElegant() {",
-    "  return refinedDigital;",
-    "}",
-  ]);
+  "function buildSystems() {",
+  "  return scalableSolutions();",
+  "}",
+]);
+
 
   return (
     <section className="relative w-full min-h-[100svh] flex flex-col overflow-hidden">
@@ -235,12 +237,23 @@ export function Hero() {
             className="flex flex-col items-center text-center lg:items-start lg:text-left w-full lg:w-[55%] z-20"
           >
             {/* Morphing badge */}
-            <motion.div variants={badgeVariants} className="mb-10 lg:mb-12">
+            <motion.div variants={badgeVariants} className="mb-6 lg:mb-8">
               <MorphingBadge />
             </motion.div>
 
+            {/* Name Label */}
+            <motion.div
+              variants={textVariants}
+              className="flex items-center gap-2 mb-4 group"
+            >
+              <span className="w-8 h-[1px] bg-accent" />
+              <span className="text-sm font-bold tracking-widest uppercase text-accent">
+                Ajay Vishwakarma
+              </span>
+            </motion.div>
+
             {/* Headline */}
-            <motion.h1 className="font-serif text-[#1C1C1C] dark:text-[#F3F3F3] leading-[1.06] tracking-tight mb-6 lg:mb-8 text-[clamp(40px,5vw,72px)] font-bold">
+            <motion.h1 className="font-serif text-foreground leading-[1.06] tracking-tight mb-6 lg:mb-8 text-[clamp(40px,5vw,72px)] font-bold">
               <motion.span variants={textVariants} className="block">Engineering scalable</motion.span>
               <motion.span variants={textVariants} className="block">systems built for</motion.span>
               <motion.span
@@ -267,15 +280,15 @@ export function Hero() {
             {/* Paragraph */}
             <motion.p
               variants={textVariants}
-              className="text-[clamp(15px,1.2vw,18px)] text-[#1C1C1C]/70 dark:text-[#C8C8C8] max-w-[540px] mb-6 lg:mb-8 leading-[1.75] font-sans"
+              className="text-base sm:text-lg text-foreground/70 dark:text-foreground/80 max-w-[540px] mb-6 lg:mb-8 leading-relaxed font-sans"
             >
-              I architect scalable backend systems and performance-driven web applications built for production environments.
+              I architect robust backend systems and performance-driven applications designed for scale and production stability.
             </motion.p>
 
             {/* Authority line */}
             <motion.div
               variants={textVariants}
-              className="flex flex-wrap justify-center lg:justify-start items-center gap-2.5 text-[11px] font-bold text-[#1C1C1C]/45 dark:text-[#9A9A9A] tracking-[0.2em] mb-6 lg:mb-8 uppercase"
+              className="flex flex-wrap justify-center lg:justify-start items-center gap-2.5 text-xs font-bold text-muted-foreground tracking-widest mb-6 lg:mb-8 uppercase"
             >
               <span>Scalable Backend Systems</span>
               <span className="w-1 h-1 rounded-full bg-current opacity-40" />
@@ -297,7 +310,7 @@ export function Hero() {
                   whileTap={{ scale: 0.97 }}
                   onHoverStart={() => arrowX.set(5)}
                   onHoverEnd={() => arrowX.set(0)}
-                  className="group relative inline-flex items-center justify-center w-full sm:w-auto rounded-[14px] px-8 h-[52px] text-[15px] font-semibold bg-[#1C1C1C] dark:bg-[#222] text-white dark:text-[#F3F3F3] shadow-[0_4px_15px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.18)] transition-shadow duration-400 cursor-pointer overflow-hidden"
+                  className="group relative inline-flex items-center justify-center w-full sm:w-auto rounded-[14px] px-8 h-[52px] text-base font-semibold bg-primary text-primary-foreground shadow-[0_4px_15px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.18)] transition-shadow duration-400 cursor-pointer overflow-hidden"
                 >
                   <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" />
                   <span>Explore Selected Work</span>
@@ -307,17 +320,23 @@ export function Hero() {
                 </motion.div>
               </Link>
 
-              <Link href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+              <a 
+                href="https://drive.google.com/uc?export=download&id=1qmNVtwVGhX9Pg8EAaXR53GU_PYznxvUA" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                download
+                className="w-full sm:w-auto"
+              >
                 <motion.div
                   whileHover={{ scale: 1.04, y: -2 }}
                   whileTap={{ scale: 0.97 }}
-                  className="group relative inline-flex items-center justify-center w-full sm:w-auto rounded-[14px] px-8 h-[52px] text-[15px] font-semibold border border-[#dcd4c7] dark:border-[#3a3a3a] text-[#1C1C1C] dark:text-[#B5B5B5] bg-white/50 dark:bg-white/5 hover:bg-[#f0e8dc] dark:hover:bg-[#2a2a2a] shadow-sm hover:shadow-[0_12px_30px_rgba(0,0,0,0.08)] transition-shadow duration-400 cursor-pointer overflow-hidden"
+                  className="group relative inline-flex items-center justify-center w-full sm:w-auto rounded-[14px] px-8 h-[52px] text-base font-semibold border border-border text-foreground bg-white/50 dark:bg-white/5 hover:bg-secondary shadow-sm hover:shadow-[0_12px_30px_rgba(0,0,0,0.08)] transition-shadow duration-400 cursor-pointer overflow-hidden"
                 >
                   <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
                   <Download className="h-4 w-4 mr-2 group-hover:animate-bounce" style={{ animationDuration: "0.6s", animationIterationCount: 1 }} />
                   <span>Download Resume</span>
                 </motion.div>
-              </Link>
+              </a>
             </motion.div>
           </motion.div>
 
@@ -435,7 +454,7 @@ export function Hero() {
               dragElastic={0.25}
               whileDrag={{ scale: 1.02, rotate: -2, cursor: "grabbing" }}
               dragTransition={{ bounceStiffness: 150, bounceDamping: 15 }}
-              className="relative z-30 w-[260px] sm:w-[290px] lg:w-[310px] rounded-[24px] border border-white/60 dark:border-white/10 bg-white/50 dark:bg-[#1a1a1a]/70 backdrop-blur-2xl p-5 sm:p-6 shadow-[0_30px_60px_rgba(0,0,0,0.07),inset_0_1px_1px_rgba(255,255,255,0.8)] dark:shadow-[0_30px_60px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.08)] cursor-grab overflow-hidden"
+              className="relative z-30 w-[260px] sm:w-[290px] lg:w-[310px] rounded-[24px] border border-glass-border bg-glass-surface backdrop-blur-2xl p-5 sm:p-6 shadow-[0_30px_60px_rgba(0,0,0,0.07),inset_0_1px_1px_rgba(255,255,255,0.8)] dark:shadow-[0_30px_60px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.08)] cursor-grab overflow-hidden"
             >
               {/* Scanline overlay */}
               <div
@@ -470,14 +489,14 @@ export function Hero() {
 
               {/* Header row */}
               <div className="flex items-center justify-between mb-5" style={{ position: "relative", zIndex: 5 }}>
-                <p className="text-[12px] font-medium text-[#1C1C1C]/40 dark:text-[#888] tracking-wide">Currently Building...</p>
+                <p className="text-xs font-medium text-muted-foreground tracking-wide">Currently Building...</p>
                 <div className="flex items-center gap-1.5">
                   <motion.div
                     animate={{ opacity: [1, 0.2, 1] }}
                     transition={{ duration: 1.4, repeat: Infinity }}
                     style={{ width: 6, height: 6, borderRadius: "50%", background: "#4ade80" }}
                   />
-                  <span className="text-[10px] font-semibold text-[#4ade80]/80 tracking-wider uppercase">Live</span>
+                  <span className="text-[10px] font-semibold text-green-400/80 tracking-wider uppercase">Live</span>
                 </div>
               </div>
 
@@ -494,7 +513,7 @@ export function Hero() {
                 </div>
               </div>
 
-              <h4 className="text-[22px] font-bold text-[#1C1C1C] dark:text-[#F3F3F3] mb-4 font-serif" style={{ position: "relative", zIndex: 5 }}>
+              <h4 className="text-2xl font-bold text-foreground mb-4 font-serif" style={{ position: "relative", zIndex: 5 }}>
                 Software Engineer
               </h4>
 
@@ -511,8 +530,8 @@ export function Hero() {
                 <p>
                   {typedLines[0].startsWith("function") ? (
                     <>
-                      <span className="text-[#a89078]">function</span>
-                      <span className="text-[#6b5a4e] dark:text-[#d4af37]">{typedLines[0].slice("function".length)}</span>
+                      <span className="text-accent/80 dark:text-accent">function</span>
+                      <span className="text-foreground/80 dark:text-accent">{typedLines[0].slice("function".length)}</span>
                     </>
                   ) : <span>{typedLines[0]}</span>}
                   {typedLines[0] && !typedLines[1] && (
@@ -524,8 +543,8 @@ export function Hero() {
                   <p className="pl-4">
                     {typedLines[1].trim().startsWith("return") ? (
                       <>
-                        <span className="text-[#a89078]">{"  return"}</span>
-                        <span className="text-[#2d5a27] dark:text-[#4ade80]">{typedLines[1].slice(typedLines[1].indexOf("return") + "return".length)}</span>
+                        <span className="text-accent/80 dark:text-accent">{"  return"}</span>
+                        <span className="text-green-700 dark:text-green-400">{typedLines[1].slice(typedLines[1].indexOf("return") + "return".length)}</span>
                       </>
                     ) : <span>{typedLines[1]}</span>}
                     {!typedLines[2] && (
@@ -545,7 +564,7 @@ export function Hero() {
 
               {/* Stack pills */}
               <div className="flex items-center gap-2 flex-wrap" style={{ position: "relative", zIndex: 5 }}>
-                {["React", "Node.js", "AWS"].map((tech) => (
+                {["MERN", "AI/ML", "fastAPI"].map((tech) => (
                   <motion.span
                     key={tech}
                     whileHover={{ scale: 1.1, y: -2 }}

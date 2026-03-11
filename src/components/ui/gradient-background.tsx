@@ -3,10 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
-interface GradientBackgroundProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode;
-  isDragging?: boolean;
-}
+import { type GradientBackgroundProps } from "@/types";
 
 export function GradientBackground({
   children,

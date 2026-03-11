@@ -9,7 +9,7 @@ const PROJECT = {
   codename: "PropTech\nCRM",
   status: "Active",
   phase: "Phase II — Pipeline Automation",
-  stack: "Next.js · Node.js\nPostgreSQL · Redis",
+  stack: "Next.js · Node.js\nMongoDB · Fine tuning",
   progress: 72,
   description:
     "Scalable backend architecture for a property-tech CRM — automating lead generation pipelines, optimizing API performance via scheduled caching, and integrating a production-grade softphone module with real-time call lifecycle management.",
@@ -23,13 +23,13 @@ const PROJECT = {
     { abbr: "NX", name: "Next.js" },
     { abbr: "ND", name: "Node.js" },
     { abbr: "PG", name: "PostgreSQL" },
-    { abbr: "RD", name: "Redis" },
+    { abbr: "FT", name: "Fine tuning" },
     { abbr: "DK", name: "Docker" },
   ],
 };
 
 // ─── Progress Bar ─────────────────────────────────────────────────────────────
-function ProgressBar({ target, inView }) {
+function ProgressBar({ target, inView }: { target: number; inView: boolean }) {
   const spring = useSpring(0, { stiffness: 70, damping: 18 });
   const widthPct = useTransform(spring, (v) => `${v}%`);
   const labelVal = useTransform(spring, (v) => `${Math.round(v)}%`);
@@ -76,7 +76,7 @@ function ProgressBar({ target, inView }) {
 }
 
 // ─── Tech Icon ────────────────────────────────────────────────────────────────
-function TechIcon({ abbr, name, delay, inView }) {
+function TechIcon({ abbr, name, delay, inView }: { abbr: string; name: string; delay: number; inView: boolean }) {
   const [hovered, setHovered] = useState(false);
   return (
     <motion.div
@@ -107,7 +107,7 @@ function TechIcon({ abbr, name, delay, inView }) {
 }
 
 // ─── Feature Row ──────────────────────────────────────────────────────────────
-function FeatureRow({ label, done, delay, inView }) {
+function FeatureRow({ label, done, delay, inView }: { label: string; done: boolean; delay: number; inView: boolean }) {
   const [hovered, setHovered] = useState(false);
   return (
     <motion.div

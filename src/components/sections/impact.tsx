@@ -5,19 +5,13 @@ import { cn } from "@/lib/utils";
 import { motion, useInView, useSpring, useTransform, Variants } from "framer-motion";
 
 // ─── Metrics Data ────────────────────────────────────────────────────────────
-interface Metric {
-  value: number;
-  suffix: string;
-  decimals: number;
-  label: string;
-  subtext: string;
-}
+import { type Metric } from "@/types";
 
 const METRICS: Metric[] = [
   { value: 99.97, suffix: "%", decimals: 2, label: "Uptime SLA", subtext: "distributed systems" },
   { value: 4.2,   suffix: "M", decimals: 1, label: "Requests / Day", subtext: "peak throughput" },
   { value: 38,    suffix: "%", decimals: 0, label: "Latency Reduction", subtext: "architectural refactors" },
-  { value: 12,    suffix: "+", decimals: 0, label: "Systems Shipped", subtext: "production-grade" },
+  { value: 4,     suffix: "+", decimals: 0, label: "Systems Shipped", subtext: "production-grade" },
 ];
 
 // ─── Animated Number ─────────────────────────────────────────────────────────

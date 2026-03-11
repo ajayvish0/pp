@@ -51,6 +51,9 @@
   --spacing-section-py-md: var(--section-py-md);
   --spacing-section-py-lg: var(--section-py-lg);
   --size-container-max: var(--container-max-width);
+
+  --color-glass-surface: var(--glass-surface);
+  --color-glass-border: var(--glass-border);
 }
 
 :root {
@@ -67,12 +70,12 @@
   --secondary-foreground: #1C1C1C;
   --muted: #E8E2D9;
   --muted-foreground: #555555;
-  --accent: #C6A969;
+  --accent: #A38340;
   --accent-foreground: #FDF6EC;
   --destructive: oklch(0.577 0.245 27.325);
   --border: #E8E2D9;
   --input: #E8E2D9;
-  --ring: #C6A969;
+  --ring: #A38340;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -91,6 +94,9 @@
   --section-py-md: 6rem;
   --section-py-lg: 8rem;
   --container-max-width: 1400px;
+  
+  --glass-surface: rgba(255, 255, 255, 0.5);
+  --glass-border: rgba(220, 210, 195, 0.65);
 }
 
 .dark {
@@ -130,6 +136,9 @@
   --section-py-md: 6rem;
   --section-py-lg: 8rem;
   --container-max-width: 1400px;
+
+  --glass-surface: rgba(26, 26, 26, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.1);
 }
 
 @layer base {

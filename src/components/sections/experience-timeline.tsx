@@ -12,83 +12,7 @@ import { useRef, useState, useEffect, useCallback } from 'react';
 import { MapPin, ArrowUpRight, Calendar, Globe } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-/* ── DATA ─────────────────────────────────────────────────────────────────── */
-const EXPERIENCES = [
-  {
-    id: 1,
-    companyFull: 'Freelance Software Dev.',
-    role: 'Software Engineer',
-    period: 'Jan 2026 – Present',
-    year: '2026',
-    location: 'Remote',
-    current: true,
-    highlights: [
-      'Automated CRM lead pipelines — cut manual processing by 70%',
-      'API performance uplift of 40% via caching & query optimization',
-      'Softphone lifecycle system delivering 35% efficiency gains',
-      'Async job architecture boosted system throughput by 45%',
-    ],
-    tags: ['Node.js', 'PostgreSQL', 'Redis', 'CRM'],
-    stat: 70,
-    statSuffix: '%',
-    statLabel: 'pipeline reduction',
-  },
-  {
-    id: 2,
-    companyFull: 'Cloudnexus',
-    role: 'Full Stack Developer',
-    period: 'Dec 2024 – Oct 2025',
-    year: '2025',
-    location: 'Bhopal',
-    current: false,
-    highlights: [
-      'Jobra AI ATS — improved candidate matching accuracy by 45%',
-      'Recruiter screening time reduced by 60% via intelligent automation',
-      'Anthropic collaboration — integrated P18, P28 & Claude Code',
-      '2FA + RBAC security architecture deployed platform-wide',
-    ],
-    tags: ['Next.js', 'Anthropic API', 'RBAC', 'AI/ML'],
-    stat: 60,
-    statSuffix: '%',
-    statLabel: 'screening time saved',
-  },
-  {
-    id: 3,
-    companyFull: 'Stackmentalist',
-    role: 'Full Stack Dev. Intern',
-    period: 'Sep – Nov 2024',
-    year: '2024',
-    location: 'Pune',
-    current: false,
-    highlights: [
-      'Multilingual Next.js website with i18n routing and SSR',
-      'CRM APIs designed and documented with Swagger / OpenAPI',
-      'HRMS modules: attendance, leave, tasks & notifications',
-    ],
-    tags: ['Next.js', 'i18n', 'Swagger', 'HRMS'],
-    stat: 3,
-    statSuffix: '',
-    statLabel: 'core modules shipped',
-  },
-  {
-    id: 4,
-    companyFull: 'Persistent Systems',
-    role: 'Martian Summer Intern',
-    period: 'Sep – Nov 2023',
-    year: '2023',
-    location: 'Bhopal',
-    current: false,
-    highlights: [
-      'Deep-dived into DBMS, OS, and Computer Networks',
-      'Completed 20+ structured coding challenges',
-      'Hands-on SDLC understanding across all project phases',
-    ],
-    tags: ['DBMS', 'OS', 'Networking', 'SDLC'],
-    stat: 20,
-    statSuffix: '+',
-    statLabel: 'challenges completed',
-  },
-] as const;
+import { EXPERIENCES } from "@/data/experiences";
 
 /* ── COUNT UP HOOK ────────────────────────────────────────────────────────── */
 function useCountUp(target: number, inView: boolean, duration = 2000) {
@@ -243,7 +167,7 @@ function ExperienceCard({
               {exp.current && (
                 <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-accent/10 border border-accent/20">
                   <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                  <span className="font-mono text-[9px] uppercase tracking-widest text-accent font-medium">
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-accent font-medium">
                     Active
                   </span>
                 </span>
@@ -251,11 +175,11 @@ function ExperienceCard({
             </div>
             <p className="font-sans text-base text-foreground/80 mb-3 font-medium">{exp.role}</p>
             <div className="flex items-center gap-4 flex-wrap">
-              <span className="inline-flex items-center gap-1.5 font-mono text-[10px] text-muted-foreground uppercase tracking-wider">
+              <span className="inline-flex items-center gap-1.5 font-mono text-xs text-muted-foreground uppercase tracking-wider">
                 <MapPin className="w-3 h-3 text-accent" />
                 {exp.location}
               </span>
-              <span className="inline-flex items-center gap-1.5 font-mono text-[10px] text-muted-foreground uppercase tracking-wider">
+              <span className="inline-flex items-center gap-1.5 font-mono text-xs text-muted-foreground uppercase tracking-wider">
                 <Calendar className="w-3 h-3 text-accent" />
                 {exp.period}
               </span>
@@ -266,7 +190,7 @@ function ExperienceCard({
             <div className="font-serif text-4xl font-bold bg-gradient-to-br from-accent to-accent/60 bg-clip-text text-transparent leading-none">
               {count}{exp.statSuffix}
             </div>
-            <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-muted-foreground mt-2 font-medium">
+            <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mt-2 font-medium">
               {exp.statLabel}
             </p>
           </div>
@@ -275,7 +199,7 @@ function ExperienceCard({
         <div className="w-full h-px bg-gradient-to-r from-border/50 via-border to-border/50 mb-6 opacity-40" />
 
         <div className="mb-7">
-          <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-accent/80 mb-4 font-semibold">
+          <p className="font-mono text-xs uppercase tracking-widest text-accent/80 mb-4 font-semibold">
             Impact & Key Results
           </p>
           <ul className="space-y-3.5">
@@ -300,7 +224,7 @@ function ExperienceCard({
           {exp.tags.map((t) => (
             <span
               key={t}
-              className="px-2.5 py-1 rounded-[6px] font-mono text-[10px] uppercase tracking-[0.12em]
+              className="px-2.5 py-1 rounded-[6px] font-mono text-xs uppercase tracking-widest
                          bg-muted/30 text-muted-foreground border border-border/40
                          transition-all duration-300
                          hover:bg-accent/10 hover:text-accent hover:border-accent/30 cursor-default"
@@ -380,7 +304,7 @@ function ZigzagEntry({
             animate={{ opacity: isInView ? 1 : 0.3, x: isInView ? 0 : (isLeft ? -10 : 10) }}
           >
             <div className="w-8 h-px bg-accent/40" />
-            <span className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-accent">
+            <span className="font-mono text-xs font-bold uppercase tracking-widest text-accent">
               {exp.year}
             </span>
           </motion.div>
@@ -425,7 +349,7 @@ function MobileEntry({
       </div>
 
       <div className="mb-4">
-        <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-accent font-bold">
+        <span className="font-mono text-xs uppercase tracking-widest text-accent font-bold">
           {exp.year}
         </span>
       </div>
@@ -448,7 +372,7 @@ function Header() {
       className="container-constrained pt-32 pb-24 relative z-10"
     >
       <div className="flex flex-col items-center text-center">
-        <p className="font-mono text-[10px] tracking-[0.4em] uppercase text-accent mb-6 flex items-center gap-4">
+        <p className="font-mono text-xs tracking-[0.4em] uppercase text-accent mb-6 flex items-center gap-4">
           <span className="w-12 h-px bg-accent/30" />
           The Chronicles
           <span className="w-12 h-px bg-accent/30" />
@@ -478,6 +402,8 @@ function Header() {
 }
 
 /* ── CTA ──────────────────────────────────────────────────────────────────── */
+
+/* ── CTA ──────────────────────────────────────────────────────────────────── */
 function CTA() {
   return (
     <motion.div
@@ -490,7 +416,7 @@ function CTA() {
       <div className="max-w-3xl mx-auto border border-border/40 rounded-3xl p-12 lg:p-20 bg-card/20 backdrop-blur-md relative overflow-hidden group">
         <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
         
-        <p className="font-mono text-[9px] uppercase tracking-[0.4em] text-muted-foreground mb-6">
+        <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-6">
           Future Proofing
         </p>
         
@@ -499,14 +425,17 @@ function CTA() {
           <span className="text-accent italic">technical venture?</span>
         </h3>
         
-        <button className="group relative inline-flex items-center gap-4 px-10 py-5 rounded-xl
+        <a 
+          href="/contact" 
+          className="group relative inline-flex items-center gap-4 px-10 py-5 rounded-xl
                            bg-foreground text-background font-mono text-xs uppercase tracking-widest
-                           transition-all duration-500 overflow-hidden">
+                           transition-all duration-500 overflow-hidden"
+        >
           <span className="relative z-10 flex items-center gap-3">
-            Full Dossier <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+            Start a Conversation <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
           </span>
           <div className="absolute inset-0 bg-accent translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
-        </button>
+        </a>
 
         <div className="absolute top-0 right-0 w-24 h-24 border-t border-r border-accent/20 rounded-tr-3xl" />
         <div className="absolute bottom-0 left-0 w-24 h-24 border-b border-l border-accent/20 rounded-bl-3xl" />
@@ -514,6 +443,8 @@ function CTA() {
     </motion.div>
   );
 }
+
+
 
 /* ── ROOT ─────────────────────────────────────────────────────────────────── */
 export default function ExperienceTimeline() {
@@ -573,7 +504,7 @@ export default function ExperienceTimeline() {
 
       <ScrollProgress containerRef={containerRef} />
 
-      <div className="fixed right-8 top-1/2 -translate-y-1/2 flex flex-col gap-4 font-mono text-[8px] uppercase tracking-widest text-muted-foreground/40 hidden xl:flex z-40">
+      <div className="fixed right-8 top-1/2 -translate-y-1/2 flex flex-col gap-4 font-mono text-[10px] uppercase tracking-widest text-muted-foreground/40 hidden xl:flex z-40">
         <span className="rotate-90 origin-right">Scroll to explore</span>
         <div className="w-px h-12 bg-border/20 mx-auto mt-16" />
       </div>

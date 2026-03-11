@@ -1,11 +1,12 @@
-import CurrentlyBuilding from "@/components/sections/CurrentlyBuilding"
-import EngineeringNotes from "@/components/sections/EngineerNotes"
-import ExperienceTimeline from "@/components/sections/ExperienceTimeline"
-import FinalCTA from "@/components/sections/FinalCTA"
+import CurrentlyBuilding from "@/components/sections/currently-building"
+import EducationFoundation from "@/components/sections/education-foundation"
+import EngineeringNotes from "@/components/sections/engineer-notes"
+import ExperienceTimeline from "@/components/sections/experience-timeline"
+import FinalCTA from "@/components/sections/final-cta"
 import { Hero } from "@/components/sections/hero"
 import ImpactSection from "@/components/sections/impact"
 import MarqueeStrip  from "@/components/sections/marquee-strip"
-import EngineeringMatrix from "@/components/sections/TechnicalExpertise"
+import EngineeringMatrix from "@/components/sections/technical-expertise"
 import SelectedWork from "@/components/sections/work"
 export default function Home() {
   return (
@@ -14,7 +15,9 @@ export default function Home() {
       <MarqueeStrip />
       <ImpactSection/>
       <SelectedWork />
+     
       <ExperienceTimeline />
+       <EducationFoundation />
       <EngineeringMatrix />
       <CurrentlyBuilding />
       <EngineeringNotes />
