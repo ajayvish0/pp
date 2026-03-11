@@ -16,6 +16,8 @@ import {
 import {
   ArrowUpRight,
   ExternalLink,
+  Github,
+  Globe,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PROJECTS as ALL_PROJECTS } from "@/data/projects";
@@ -320,22 +322,40 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             ))}
           </ul>
 
-          <div className="flex items-center justify-between">
-            <motion.a
-              href={project.href}
-              className="font-mono text-xs tracking-widest uppercase flex items-center gap-1.5 text-accent rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-              animate={{ x: hovered ? 4 : 0 }}
-              transition={{ type: "spring", stiffness: 90, damping: 18 }}
-              aria-label={`View ${project.title} project`}
-            >
-              View project <ArrowUpRight size={11} strokeWidth={2} aria-hidden="true" />
-            </motion.a>
-            <span
+          <div className="flex items-center justify-between mt-auto">
+            <div className="flex items-center gap-3">
+              {project.liveUrl && (
+                <motion.a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group/link flex items-center gap-1.5 font-mono text-[10px] tracking-widest uppercase text-accent hover:text-accent/80 transition-colors"
+                  whileHover={{ x: 2 }}
+                >
+                  <Globe size={12} className="group-hover/link:animate-pulse" />
+                  Live Demo
+                </motion.a>
+              )}
+              {project.githubUrl && (
+                <motion.a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group/link flex items-center gap-1.5 font-mono text-[10px] tracking-widest uppercase text-muted-foreground hover:text-accent transition-colors"
+                  whileHover={{ x: 2 }}
+                >
+                  <Github size={12} />
+                  Source
+                </motion.a>
+              )}
+            </div>
+            
+            <motion.div
               className="font-mono text-[10px] text-muted-foreground/50 select-none"
               aria-label={`Version ${project.annotation}`}
             >
               {project.annotation}
-            </span>
+            </motion.div>
           </div>
         </div>
       </div>

@@ -15,6 +15,8 @@ export interface Project {
   icon: LucideIcon;
   stat: { label: string; value: string };
   featured: boolean;
+  githubUrl?: string;
+  liveUrl?: string;
 }
 
 export type FormStatus = "idle" | "submitting" | "success" | "error";

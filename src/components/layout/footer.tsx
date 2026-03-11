@@ -48,16 +48,16 @@ const Footer = () => {
   const ref = useRef<HTMLDivElement>(null);
 
 const socialIcons = [
-  { Icon: FaGithub, href: 'https://github.com/yourusername', label: 'GitHub' },
-  { Icon: FaLinkedin, href: 'https://linkedin.com/in/yourusername', label: 'LinkedIn' },
-  { Icon: FaTwitter, href: 'https://twitter.com/yourusername', label: 'Twitter' },
+  { Icon: FaGithub, href: 'https://github.com/ajayvish0', label: 'GitHub' },
+  { Icon: FaLinkedin, href: 'https://www.linkedin.com/in/ajay-vishwakarma-3409a0225/', label: 'LinkedIn' },
+  { Icon: FaTwitter, href: 'https://x.com/ajayvish01', label: 'Twitter' },
   { Icon: FaEnvelope, href: 'mailto:ajayvish936@gmail.com', label: 'Email' },
 ];
 
   const navigationItems = [
-    { name: 'Work', href: '/work' },
+    { name: 'Work', href: '/#work' },
     { name: 'Projects', href: '/projects' },
-    { name: 'Experience', href: '/experience' },
+    { name: 'Experience', href: '/#experience' },
     { name: 'Contact', href: '/contact' },
     { name: 'Resume', href: 'https://drive.google.com/uc?export=download&id=1qmNVtwVGhX9Pg8EAaXR53GU_PYznxvUA' },
   ];
