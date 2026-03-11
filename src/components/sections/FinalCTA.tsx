@@ -32,7 +32,7 @@ function ArchitecturalButton({ label, href }) {
 
   return (
     <motion.a
-      href={href || "#contact"}
+      href={href || "/contact"}
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
       whileHover={{ scale: 1.03 }}

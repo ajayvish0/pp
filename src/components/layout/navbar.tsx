@@ -15,7 +15,7 @@ const NAV_LINKS = [
   { name: "Work",       href: "/#work",       icon: Briefcase  },
   { name: "Projects",   href: "/#projects",   icon: FolderGit2 },
   { name: "Experience", href: "/#experience", icon: ScrollText },
-  { name: "Contact",    href: "/#contact",    icon: Mail       },
+  { name: "Contact",    href: "/contact",     icon: Mail       },
 ];
 // ─── Desktop animated letter link ─────────────────────────────────────────────
 
