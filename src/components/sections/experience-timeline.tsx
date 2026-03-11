@@ -492,7 +492,7 @@ export default function ExperienceTimeline() {
     <div 
     id='experience'
       ref={containerRef} 
-      className="relative min-h-screen bg-background text-foreground selection:bg-accent/30 selection:text-accent"
+      className="relative min-h-screen bg-background text-foreground selection:bg-accent/30 selection:text-accent scroll-mt-24"
       style={{ clipPath: "inset(0)" }}
     >
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay z-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />

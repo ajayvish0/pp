@@ -433,7 +433,7 @@ export default function SelectedWork() {
       id="work"
       ref={ref}
       aria-label="Selected work"
-      className="relative section-padding pt-0 overflow-hidden"
+      className="relative section-padding pt-0 overflow-hidden scroll-mt-24"
     >
       {/* Dot grid background */}
       <div

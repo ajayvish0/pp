@@ -288,11 +288,13 @@ export default function EngineeringMatrix() {
   
   return (
     <section
+     id="tech-stack"
       ref={ref}
-      className="relative py-20 md:py-28 lg:py-40 overflow-hidden bg-background"
+      className="relative py-20 md:py-28 lg:py-40 overflow-hidden bg-background scroll-mt-24"
     >
       {/* Ambient radial glow – very subtle */}
       <div
+     
         className="absolute left-1/2 top-[25%] -translate-x-1/2 w-[800px] h-[600px] pointer-events-none opacity-30"
         style={{
           background: "radial-gradient(ellipse at center, var(--accent) 0%, transparent 65%)",

@@ -12,11 +12,12 @@ import { cn } from "@/lib/utils";
 // ─── Data ─────────────────────────────────────────────────────────────────────
  
 const NAV_LINKS = [
-  { name: "Work",       href: "/#work",       icon: Briefcase  },
-  { name: "Tech",   href: "/#tech-stack",       icon: BrainCircuit },
-  { name: "Experience", href: "/#experience", icon: ScrollText },
-  { name: "Contact",    href: "/contact",     icon: Mail       },
+  { name: "Work",       href: "/#work",       id: "work",       icon: Briefcase  },
+  { name: "Tech",       href: "/#tech-stack", id: "tech-stack", icon: BrainCircuit },
+  { name: "Experience", href: "/#experience", id: "experience", icon: ScrollText },
+  { name: "Contact",    href: "/contact",     id: "contact",    icon: Mail       },
 ];
+
 // ─── Desktop animated letter link ─────────────────────────────────────────────
 
 const AnimatedNavLink = ({
@@ -139,12 +140,52 @@ const DockItem = ({
 export function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = React.useState(false);
+  const [activeSection, setActiveSection] = React.useState<string | null>(null);
 
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Intersection Observer for active sections
+  React.useEffect(() => {
+    if (pathname !== "/") {
+      setActiveSection(null);
+      return;
+    }
+
+    const observerOptions = {
+      root: null,
+      rootMargin: "-20% 0px -70% 0px",
+      threshold: 0,
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    NAV_LINKS.forEach((link) => {
+      if (link.id && link.href.startsWith("/#")) {
+        const el = document.getElementById(link.id);
+        if (el) observer.observe(el);
+      }
+    });
+
+    return () => observer.disconnect();
+  }, [pathname]);
+
+  const isLinkActive = (link: typeof NAV_LINKS[0]) => {
+    if (link.href === pathname) return true;
+    if (pathname === "/" && activeSection === link.id) return true;
+    return false;
+  };
 
   return (
     <>
@@ -225,10 +266,10 @@ export function Navbar() {
                 key={link.name}
                 href={link.href}
                 title={link.name}
-                isActive={pathname === link.href}
+                isActive={isLinkActive(link)}
                 className={cn(
                   "text-[clamp(0.75rem,0.9vw,0.85rem)] font-semibold tracking-[0.22em] uppercase transition-colors duration-300",
-                  pathname === link.href ? "text-foreground" : "text-muted-foreground"
+                  isLinkActive(link) ? "text-foreground" : "text-muted-foreground"
                 )}
               />
             ))}
@@ -342,7 +383,7 @@ export function Navbar() {
             <div className="w-[1px] self-stretch my-2 bg-border/50 mx-0.5" />
 
             {NAV_LINKS.map((link) => (
-              <DockItem key={link.name} link={link} isActive={pathname === link.href} />
+              <DockItem key={link.name} link={link} isActive={isLinkActive(link)} />
             ))}
 
             <div className="w-[1px] self-stretch my-2 bg-border/50 mx-0.5" />
