@@ -218,10 +218,10 @@ export function Hero() {
 
  
   const typedLines = useTypewriter([
-  "function buildSystems() {",
-  "  return scalableSolutions();",
-  "}",
-]);
+    "function buildSystems() {",
+    "  return scalableSolutions();",
+    "}",
+  ]);
 
 
   return (

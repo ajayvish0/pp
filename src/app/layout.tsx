@@ -22,8 +22,39 @@ const dmMono = DM_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ajay Vishwakarma | Portfolio",
-  description: "Personal Portfolio of Ajay Vishwakarma, Software Engineer focused on scalable backend systems.",
+   metadataBase: new URL("https://ajayv.vercel.app"),
+  title: "Ajay Vishwakarma — Software Engineer",
+  description: "Software engineer building scalable backend systems and production-grade web applications.",
+  openGraph: {
+    title: "Ajay Vishwakarma — Software Engineer",
+    description: "Software engineer building scalable backend systems and production-grade web applications.",
+    url: "https://ajayv.vercel.app",
+    siteName: "Ajay Vishwakarma Portfolio",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Ajay Vishwakarma — Software Engineer",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ajay Vishwakarma — Software Engineer",
+    description: "Software engineer building scalable backend systems and production-grade web applications.",
+    images: ["/og-image.png"],
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Ajay Vishwakarma",
+  url: "https://ajayv.vercel.app",
+  jobTitle: "Software Engineer",
 };
 
 export default function RootLayout({
@@ -33,6 +64,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body
         className={`${inter.variable} ${playfair.variable} ${dmMono.variable} antialiased font-sans flex flex-col min-h-screen`}
       >
