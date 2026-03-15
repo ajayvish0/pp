@@ -30,7 +30,10 @@ function CountUp({ to, suffix = "" }: { to: number; suffix?: string }) {
   const [val, setVal] = useState("0");
 
   useEffect(() => { spring.set(inView ? to : 0); }, [inView, to, spring]);
-  useEffect(() => spring.on("change", (v) => setVal(Math.round(v).toString())), [spring]);
+  useEffect(() => spring.on("change", (v) => {
+    const isDecimal = to % 1 !== 0;
+    setVal(isDecimal ? v.toFixed(1) : Math.round(v).toString());
+  }), [spring, to]);
 
   return <span ref={ref}>{val}{suffix}</span>;
 }
@@ -544,9 +547,9 @@ function ProjectArchiveHero({ totalProjects }: { totalProjects: number }) {
           transition={{ delay: 0.3, type: "spring", stiffness: 80, damping: 18 }}
         >
           {[
-            { n: totalProjects, suffix: "", label: "Projects" },
-            { n: 4, suffix: " yrs", label: "Experience" },
-            { n: 100, suffix: "%", label: "Production Ready" },
+            { n: 8, suffix: "", label: "Projects" },
+            { n: 1.5, suffix: " yrs", label: "Experience" },
+            { n: 70, suffix: "%", label: "Manual Reduction" },
           ].map(({ n, suffix, label }) => (
             <div key={label} className="text-center lg:text-right">
               <dt className="sr-only">{label}</dt>

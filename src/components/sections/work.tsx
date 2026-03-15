@@ -35,7 +35,10 @@ function CountUp({ to, suffix = "" }: { to: number; suffix?: string }) {
   const [val, setVal] = useState("0");
 
   useEffect(() => { spring.set(inView ? to : 0); }, [inView, to, spring]);
-  useEffect(() => spring.on("change", (v) => setVal(Math.round(v).toString())), [spring]);
+  useEffect(() => spring.on("change", (v) => {
+    const isDecimal = to % 1 !== 0;
+    setVal(isDecimal ? v.toFixed(1) : Math.round(v).toString());
+  }), [spring, to]);
 
   return <span ref={ref}>{val}{suffix}</span>;
 }
@@ -532,7 +535,7 @@ export default function SelectedWork() {
               transition={{ delay: 0.3, type: "spring", stiffness: 80, damping: 18 }}
             >
               {[
-                { n: 6, suffix: "+", label: "Projects" },
+                { n: 8, suffix: "", label: "Projects" },
                 { n: 1.5, suffix: " yrs", label: "Experience" },
                 { n: 100, suffix: "%", label: "Shipped" },
               ].map(({ n, suffix, label }) => (
@@ -626,7 +629,7 @@ export default function SelectedWork() {
           <p
             className="text-xs tracking-widest uppercase text-muted-foreground/60 font-mono"
           >
-            {PROJECTS.length} selected works
+            8 selected works
           </p>
 
             <Link href="/projects">

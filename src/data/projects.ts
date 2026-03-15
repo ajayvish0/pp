@@ -1,29 +1,19 @@
 import {
-  Layers,
+  
   Cpu,
-  Database,
-  Terminal,
+  
   Palette,
-  BarChart3,
-  Server,
-  Shield,
-  GitBranch,
-  Cloud,
-  Zap,
-  Code2,
+   
   Globe,
-  Lock,
+  
   Activity,
-  Workflow,
-  Container,
-  Network,
-  Boxes,
+  
   FileCode2,
-  Gauge,
-  Radio,
-  Telescope,
-  MonitorDot,
-  Binary,
+   
+  Bell,
+  ShieldCheck,
+  
+  Building2,
   type LucideIcon,
 } from "lucide-react";
 
@@ -57,7 +47,7 @@ export const PROJECTS: Project[] = [
     githubUrl: "https://github.com/ajayvish0/teamsketch", // Derived/Placeholder if not exact in resume, but I'll use what's available
     liveUrl: "https://collaoboard.netlify.app/",
     icon: Palette,
-    stat: { label: "Concurrent users", value: "50+" },
+    stat: { label: "Productivity boost", value: "35%" },
     featured: true,
   },
   {
@@ -66,7 +56,7 @@ export const PROJECTS: Project[] = [
     category: "Backend Systems",
     tag: "Fintech Application",
     description:
-      "Scalable fintech application with user authentication (NextAuth), onramp transaction functionality (5,000 daily tx), and real-time balance updates with 99.9% uptime.",
+      "Secure fintech application featuring user authentication via NextAuth and onramp transaction functionality. Implements real-time balance updates and transaction history.",
     tech: ["Next.js", "Express.js", "PostgreSQL", "Turborepo", "Tailwind CSS", "NextAuth"],
     year: "2024",
     annotation: "Jun 2024",
@@ -74,7 +64,7 @@ export const PROJECTS: Project[] = [
     image: "/projects/paytm.png",
     githubUrl: "https://github.com/ajayvish0/PaytmV2",
     icon: Activity,
-    stat: { label: "Unauthorized access reduced", value: "95%" },
+    stat: { label: "Security increase", value: "95%" },
     featured: true,
   },
   {
@@ -91,7 +81,7 @@ export const PROJECTS: Project[] = [
     image: "/projects/pdfchat.png",
     liveUrl: "https://pachat.netlify.app/",
     icon: FileCode2,
-    stat: { label: "Document query time", value: "-40%" },
+    stat: { label: "Query time reduced", value: "40%" },
     featured: true,
   },
   {
@@ -108,7 +98,76 @@ export const PROJECTS: Project[] = [
     image: "/projects/medium.png",
     liveUrl: "https://medium20-m79mgvdui-ajay-vishwakarmas-projects.vercel.app/",
     icon: Globe,
-    stat: { label: "Load time improvement", value: "35%" },
+    stat: { label: "Load time boost", value: "35%" },
     featured: true,
+  },
+  {
+    slug: "twilio-notifier",
+    title: "Twilio Notifier",
+    category: "Full Stack",
+    tag: "Comm-Systems",
+    description:
+      "Automated voice notification system with real-time call state tracking (completed, busy, failed). Features a React dashboard for managing outbound communications via Twilio API.",
+    tech: ["Node.js", "Express", "MongoDB", "Twilio API", "React"],
+    year: "2025",
+    annotation: "Jan 2025",
+    href: "https://github.com/ajayvish0/twilio-notifier-fullstack",
+    image: "/projects/twilio.png",
+    githubUrl: "https://github.com/ajayvish0/twilio-notifier-fullstack",
+    icon: Bell,
+    stat: { label: "Call states tracked", value: "5+" },
+    featured: false,
+  },
+  {
+    slug: "nagraj-associates",
+    title: "Nagraj Associates",
+    category: "Full Stack",
+    tag: "Business Systems",
+    description:
+      "Professional corporate platform for an architectural firm. Express-based contact handling and high-fidelity service showcases.",
+    tech: ["Node.js", "Express", "Bootstrap", "JavaScript"],
+    year: "2025",
+    annotation: "Feb 2025",
+    href: "https://nagarajassociates.onrender.com",
+    image: "/projects/nagraj.png",
+    githubUrl: "https://github.com/ajayvish0/nagraj",
+    liveUrl: "https://nagarajassociates.onrender.com",
+    icon: Building2,
+    stat: { label: "Manual processing", value: "-70%" },
+    featured: false,
+  },
+  {
+    slug: "leadlly-api",
+    title: "Leadlly API Infrastructure",
+    category: "Backend Systems",
+    tag: "API Architecture",
+    description:
+      "Robust backend infrastructure featuring secure JWT authentication and rigorous schema validation with Zod. Modular architecture designed for high-performance and scalability.",
+    tech: ["Node.js", "Express", "MongoDB", "JWT", "Zod"],
+    year: "2024",
+    annotation: "Dec 2024",
+    href: "https://github.com/ajayvish0/Leadlly-Assignment",
+    image: "/projects/leadlly.png",
+    githubUrl: "https://github.com/ajayvish0/Leadlly-Assignment",
+    icon: ShieldCheck,
+    stat: { label: "Security reliability", value: "+50%" },
+    featured: false,
+  },
+  {
+    slug: "systemic-clone",
+    title: "Systemic App Clone",
+    category: "Full Stack",
+    tag: "Social Connect",
+    description:
+      "Modern full-stack application featuring advanced server-state management with TanStack Query and Appwrite integration. Radix UI components.",
+    tech: ["React", "Appwrite", "TanStack Query", "Radix UI", "shadcn/ui"],
+    year: "2024",
+    annotation: "Nov 2024",
+    href: "https://github.com/ajayvish0/CloneApp",
+    image: "/projects/social_app.png",
+    githubUrl: "https://github.com/ajayvish0/CloneApp",
+    icon: Cpu,
+    stat: { label: "CI/CD Workflows", value: "Active" },
+    featured: false,
   },
 ];

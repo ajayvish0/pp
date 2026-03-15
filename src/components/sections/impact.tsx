@@ -8,10 +8,10 @@ import { motion, useInView, useSpring, useTransform, Variants } from "framer-mot
 import { type Metric } from "@/types";
 
 const METRICS: Metric[] = [
-  { value: 99.97, suffix: "%", decimals: 2, label: "Uptime SLA", subtext: "distributed systems" },
-  { value: 4.2,   suffix: "M", decimals: 1, label: "Requests / Day", subtext: "peak throughput" },
-  { value: 38,    suffix: "%", decimals: 0, label: "Latency Reduction", subtext: "architectural refactors" },
-  { value: 4,     suffix: "+", decimals: 0, label: "Systems Shipped", subtext: "production-grade" },
+  { value: 70,    suffix: "%", decimals: 0, label: "Manual Processing", subtext: "reduced via automation" },
+  { value: 45,    suffix: "%", decimals: 0, label: "Matching Accuracy", subtext: "intelligent ATS scoring" },
+  { value: 40,    suffix: "%", decimals: 0, label: "API Performance", subtext: "optimized synchronization" },
+  { value: 60,    suffix: "%", decimals: 0, label: "Screening Time", subtext: "saved for recruiters" },
 ];
 
 // ─── Animated Number ─────────────────────────────────────────────────────────
