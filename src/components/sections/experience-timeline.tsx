@@ -147,7 +147,7 @@ function ExperienceCard({
       />
 
       <div className={cn(
-        "relative p-7 rounded-2xl border transition-all duration-500 overflow-hidden",
+        "relative p-5 md:p-7 rounded-2xl border transition-all duration-500 overflow-hidden",
         "bg-card/40 backdrop-blur-xl border-border/50",
         hovered && "border-accent/40 bg-card/60 shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.3)]"
       )}>
@@ -158,7 +158,7 @@ function ExperienceCard({
           transition={{ duration: 0.4 }}
         />
 
-        <div className="flex items-start justify-between gap-4 mb-6">
+        <div className="flex flex-col sm:flex-row items-start justify-between gap-6 mb-6">
           <div className="flex-1">
             <div className="flex items-center gap-3 mb-2 flex-wrap">
               <h3 className="font-serif text-2xl font-bold text-foreground leading-tight tracking-tight">
@@ -186,8 +186,8 @@ function ExperienceCard({
             </div>
           </div>
 
-          <div className="text-right flex-shrink-0 flex flex-col items-end">
-            <div className="font-serif text-4xl font-bold bg-gradient-to-br from-accent to-accent/60 bg-clip-text text-transparent leading-none">
+          <div className="text-left sm:text-right flex-shrink-0 flex flex-col items-start sm:items-end min-w-[70px]">
+            <div className="font-serif text-3xl md:text-4xl font-bold bg-gradient-to-br from-accent to-accent/60 bg-clip-text text-transparent leading-none">
               {count}{exp.statSuffix}
             </div>
             <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mt-2 font-medium">

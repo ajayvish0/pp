@@ -16,7 +16,7 @@ A high-performance, design-centric engineering portfolio showcasing production-r
 | :--- | :--- |
 | **Frontend** | Next.js 15 (App Router), TypeScript, Framer Motion, Tailwind CSS, Lucide |
 | **Backend** | Node.js, Express.js, FastAPI, PostgreSQL, MongoDB, Redis |
-| **AI/ML** | LangChain, Google Drive API, NLP Parsing, Intelligent ATS Scoring |
+| **AI/ML** | LangChain, NLP Parsing, Intelligent ATS Scoring |
 | **DevOps** | Docker, CI/CD Workflows, JWT Authentication, Zod Schema Validation |
 
 ---
@@ -53,4 +53,4 @@ npm run build
 ```
 
 ---
-*Built with precision and purpose. © 2025 Ajay Vishwakarma*
+*Built with precision and purpose. © 2026 Ajay Vishwakarma*
