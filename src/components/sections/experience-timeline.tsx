@@ -64,7 +64,7 @@ function BackgroundYear({
            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
            className={cn(
              "relative w-full h-full flex items-center justify-center transition-transform duration-700 ease-[0.16,1,0.3,1]",
-             isLeftCard ? "md:translate-x-[15vw]" : "md:-translate-x-[15vw]"
+             isLeftCard ? "lg:translate-x-[15vw]" : "lg:-translate-x-[15vw]"
            )}
         >
           <AnimatePresence>
@@ -135,7 +135,7 @@ function ExperienceCard({
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="relative w-full max-w-lg"
+      className="relative w-full max-w-lg lg:max-w-none xl:max-w-lg"
     >
       <motion.div
         className="absolute -inset-4 rounded-3xl pointer-events-none opacity-0 group-hover:opacity-100"
@@ -258,9 +258,9 @@ function ZigzagEntry({
         localRef.current = node;
         setItemRef(node);
       }} 
-      className="relative grid grid-cols-[1fr_100px_1fr] gap-0 mb-40 md:grid hidden"
+      className="relative grid grid-cols-[1fr_80px_1fr] xl:grid-cols-[1fr_100px_1fr] gap-0 mb-40 lg:grid hidden px-4 xl:px-0"
     >
-      <div className={cn("flex items-center", isLeft ? "justify-end pr-16" : "invisible items-end justify-end")}>
+      <div className={cn("flex items-center", isLeft ? "justify-end pr-8 xl:pr-16" : "invisible items-end justify-end")}>
         <ExperienceCard exp={exp} side="left" />
       </div>
 
@@ -279,17 +279,17 @@ function ZigzagEntry({
           />
 
           <div className={cn(
-            'w-14 h-14 rounded-2xl border-2 flex items-center justify-center transition-all duration-500 shadow-xl backdrop-blur-md rotate-45',
+            'w-12 h-12 xl:w-14 xl:h-14 rounded-2xl border-2 flex items-center justify-center transition-all duration-500 shadow-xl backdrop-blur-md rotate-45',
             isInView
               ? 'border-accent bg-accent/10'
               : 'border-border/60 bg-background'
           )}>
             <div className="-rotate-45">
               {exp.current ? (
-                <Globe className="w-5 h-5 text-accent animate-pulse" />
+                <Globe className="w-4 h-4 xl:w-5 xl:h-5 text-accent animate-pulse" />
               ) : (
                 <Calendar className={cn(
-                  'w-5 h-5 transition-colors duration-500',
+                  'w-4 h-4 xl:w-5 xl:h-5 transition-colors duration-500',
                   isInView ? 'text-accent' : 'text-muted-foreground/30'
                 )} />
               )}
@@ -311,7 +311,7 @@ function ZigzagEntry({
         </motion.div>
       </div>
 
-      <div className={cn("flex items-center", !isLeft ? "justify-start pl-16" : "invisible items-start justify-start")}>
+      <div className={cn("flex items-center", !isLeft ? "justify-start pl-8 xl:pl-16" : "invisible items-start justify-start")}>
         <ExperienceCard exp={exp} side="right" />
       </div>
     </div>
@@ -337,7 +337,7 @@ function MobileEntry({
         localRef.current = node;
         setItemRef(node);
       }} 
-      className="mb-20 md:hidden relative pl-12"
+      className="mb-20 lg:hidden relative pl-12"
     >
       <div className="absolute left-4 top-0 bottom-0 w-[2px] bg-gradient-to-b from-accent/40 via-border/20 to-accent/40 rounded-full" />
       
@@ -523,7 +523,7 @@ export default function ExperienceTimeline() {
           ))}
         </div>
 
-        <div className="md:hidden">
+        <div className="lg:hidden">
           {EXPERIENCES.map((exp, i) => (
             <MobileEntry 
               key={`mobile-${exp.id}`} 
